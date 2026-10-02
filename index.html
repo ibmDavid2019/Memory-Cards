@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jogo da Memória Online | Memory Cards</title>
+<meta name="description" content="Memory Cards é um jogo da memória online e gratuito. Jogue sozinho ou online contra um amigo, encontre os pares, faça combos, avance por 20 níveis e treine atenção e memória visual no celular ou no computador.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#140f33">
+
+<!-- SEO: substitua [URL-DO-SITE] pela URL final (ex.: https://usuario.github.io/memory-cards), sem barra no fim -->
+<link rel="canonical" href="[URL-DO-SITE]/">
+
+<!-- Open Graph / compartilhamento -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Memory Cards">
+<meta property="og:title" content="Jogo da Memória Online | Memory Cards">
+<meta property="og:description" content="Encontre os pares, faça combos e treine sua memória. Grátis, direto no navegador.">
+<meta property="og:url" content="[URL-DO-SITE]/">
+<meta property="og:image" content="[URL-DO-SITE]/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Memory Cards — jogo da memória online">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jogo da Memória Online | Memory Cards">
+<meta name="twitter:description" content="Encontre os pares, faça combos e treine sua memória. Grátis, direto no navegador.">
+<meta name="twitter:image" content="[URL-DO-SITE]/og-image.png">
+
+<!-- Favicon (SVG embutido, sem arquivo externo) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c5cf6'/%3E%3Ctext x='32' y='47' font-size='42' font-weight='900' text-anchor='middle' fill='white' font-family='Arial,sans-serif'%3E%3F%3C/text%3E%3C/svg%3E">
+
+<!-- Dados estruturados -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Memory Cards",
+  "description": "Jogo da memória online em que o jogador vira cartas para encontrar pares iguais, com quatro dificuldades e 20 níveis.",
+  "url": "[URL-DO-SITE]/",
+  "inLanguage": "pt-BR",
+  "genre": "Jogo da memória",
+  "gamePlatform": "Navegador web",
+  "playMode": ["https://schema.org/SinglePlayer", "https://schema.org/MultiPlayer"],
+  "isAccessibleForFree": true
+}
+</script>
+
+<!-- =====================================================================
+     GOOGLE ADSENSE - INSERIR CÓDIGO OFICIAL AQUI (verificação do site)
+     ---------------------------------------------------------------------
+     Para o Google verificar a propriedade do site, use UMA das opções que
+     o painel do AdSense oferecer. A mais simples é a meta tag abaixo:
+     descomente e troque pelo seu ID real.
+
+     <meta name="google-adsense-account" content="ca-pub-SEU-ID">
+
+     O carregamento dos anúncios em si NÃO é feito aqui: ele é controlado
+     pelo bloco "PUBLICIDADE" no JavaScript no fim deste arquivo
+     (ADS_ENABLED, ADSENSE_CLIENT e os slots), para respeitar a escolha
+     de consentimento do visitante.
+     ===================================================================== -->
+
+<!-- ============================== CSS ============================== -->
+<style>
+:root{--bg1:#1b1446;--bg2:#0c1433;--bg3:#2a1052;--panel:rgba(255,255,255,.07);--panel-b:rgba(255,255,255,.12);--text:#f4f2ff;--muted:#a9a4d6;--body:#dcd8f7;--a1:#8b5cf6;--a2:#22d3ee;--gold:#ffc94d;--ok:#34e3a0;--bad:#ff6b8b;--radius:20px;--hh:52px;--ease:cubic-bezier(.2,.8,.2,1);}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html{background:#140f33;scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--text);min-height:100vh;}body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(160deg,var(--bg3) 0%,var(--bg1) 40%,var(--bg2) 100%);}body.modal-open{overflow:hidden}button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-action:manipulation}a{color:var(--a2)}button:focus-visible,a:focus-visible{outline:3px solid var(--a2);outline-offset:3px;border-radius:6px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.skip{position:absolute;left:-999px;top:0;z-index:60;background:#fff;color:#140f33;padding:10px 14px;border-radius:0 0 10px 0;font-weight:700}.skip:focus{left:0}.glow{position:fixed;z-index:-1;border-radius:50%;filter:blur(60px);opacity:.35;pointer-events:none;animation:drift 14s ease-in-out infinite alternate}.glow.g1{width:300px;height:300px;background:var(--a1);top:-90px;left:-80px}.glow.g2{width:280px;height:280px;background:var(--a2);bottom:-100px;right:-90px;opacity:.22;animation-delay:-6s}@keyframes drift{to{transform:translate(30px,40px) scale(1.15)}}.site-header{position:sticky;top:0;z-index:35;height:var(--hh);display:flex;align-items:center;gap:12px;padding:0 max(14px,env(safe-area-inset-right)) 0 max(14px,env(safe-area-inset-left));background:rgba(20,15,51,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--panel-b);}.brand{display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none;font-weight:800;letter-spacing:.04em;font-size:.98rem;margin-right:auto}.brand i{width:26px;height:32px;border-radius:7px;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:.95rem;background:linear-gradient(145deg,#9d7bff,#4f46e5)}.nav-toggle{width:44px;height:40px;border-radius:12px;background:var(--panel);border:1px solid var(--panel-b);font-size:1.15rem}.site-nav{position:absolute;top:100%;right:10px;min-width:210px;display:none;flex-direction:column;padding:8px;border-radius:16px;background:#1d1650;border:1px solid var(--panel-b);box-shadow:0 18px 40px rgba(0,0,0,.5);}.site-nav.open{display:flex}.site-nav a{color:var(--text);text-decoration:none;padding:13px 14px;border-radius:10px;font-weight:600;font-size:.95rem}.site-nav a:hover{background:var(--panel)}@media (min-width:760px){.nav-toggle{display:none}.site-nav{position:static;display:flex;flex-direction:row;padding:0;background:none;border:0;box-shadow:none;min-width:0;gap:2px}.site-nav a{padding:8px 12px;font-size:.88rem;color:var(--body)}}#jogo{position:relative;overflow:hidden;scroll-margin-top:var(--hh);height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));min-height:300px;-webkit-user-select:none;user-select:none;touch-action:manipulation;}.screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:18px calc(18px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));opacity:0;visibility:hidden;transform:translateY(18px) scale(.98);transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s .35s;}.screen.active{opacity:1;visibility:visible;transform:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}.inner{width:100%;max-width:480px;display:flex;flex-direction:column;flex:1;min-height:0}.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0;padding:4px 2px 12px}.btn{width:100%;min-height:58px;border-radius:18px;font-weight:800;font-size:1.05rem;letter-spacing:.08em;background:var(--panel);border:1px solid var(--panel-b);transition:transform .15s var(--ease),background .2s;}.btn:active{transform:scale(.96)}.btn.primary{background:linear-gradient(135deg,#7c4dff,#5b5ef0 55%,#1596b0);border:0;min-height:66px;font-size:1.25rem;box-shadow:0 12px 30px -8px rgba(139,92,246,.7),inset 0 1px 0 rgba(255,255,255,.35);position:relative;overflow:hidden;}.btn.primary::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:shine 3.2s ease-in-out infinite;}@keyframes shine{0%,60%{left:-60%}100%{left:130%}}.btn.danger{color:var(--bad)}.stack{display:flex;flex-direction:column;gap:12px;width:100%}.row{display:flex;gap:12px;width:100%}.row .btn{font-size:.85rem}.head{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px}.head h2{font-size:1.05rem;letter-spacing:.14em;font-weight:800;flex:1;text-align:center;margin-right:48px}.icon-btn{width:48px;height:48px;border-radius:15px;background:var(--panel);border:1px solid var(--panel-b);font-size:1.2rem;display:grid;place-items:center;flex:none;transition:transform .15s var(--ease)}.icon-btn:active{transform:scale(.9)}#menu .inner{justify-content:center;gap:26px}.logo{text-align:center;line-height:.95}.logo span{display:block;font-weight:900;font-size:clamp(3rem,16vw,5rem);letter-spacing:.04em;background:linear-gradient(180deg,#fff 20%,#c4b5fd 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 18px rgba(139,92,246,.55));animation:titleIn .8s var(--ease) both;}.logo span:nth-child(2){background-image:linear-gradient(135deg,var(--a2),var(--a1));animation-delay:.15s}@keyframes titleIn{from{opacity:0;transform:translateY(-30px) scale(.8) rotateX(50deg)}to{opacity:1;transform:none}}.sub{text-align:center;color:var(--muted);font-size:1rem;margin-top:14px;animation:fadeUp .7s .35s var(--ease) both}@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.mini-cards{display:flex;justify-content:center;gap:10px;margin-bottom:6px}.mini-cards i{width:44px;height:56px;border-radius:11px;display:grid;place-items:center;font-style:normal;font-size:1.5rem;background:#fff;box-shadow:0 8px 18px rgba(0,0,0,.35);animation:bob 3s ease-in-out infinite;}.mini-cards i:nth-child(1){transform:rotate(-10deg)}.mini-cards i:nth-child(2){animation-delay:-1s;background:linear-gradient(135deg,var(--a1),#4f46e5);color:#fff;font-weight:900}.mini-cards i:nth-child(3){animation-delay:-2s;transform:rotate(10deg)}@keyframes bob{50%{translate:0 -7px}}.records{display:grid;grid-template-columns:1fr 1fr;gap:12px}.record{background:var(--panel);border:1px solid var(--panel-b);border-radius:var(--radius);padding:14px 10px;text-align:center}.record small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}.record b{display:block;font-size:1.5rem;margin-top:4px;font-variant-numeric:tabular-nums}.diff{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px;border-radius:var(--radius);background:var(--panel);border:1px solid var(--panel-b);transition:transform .15s var(--ease);position:relative;overflow:hidden}.diff:active{transform:scale(.97)}.diff::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c)}.diff .ico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.7rem;background:color-mix(in srgb,var(--c) 22%,transparent);flex:none}.diff h3{font-size:1.1rem;letter-spacing:.1em}.diff p{color:var(--muted);font-size:.85rem;margin-top:3px}.diff .best{margin-left:auto;text-align:right;color:var(--muted);font-size:.72rem;font-variant-numeric:tabular-nums}.diff .best b{display:block;color:var(--text);font-size:.95rem}.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.lvl{aspect-ratio:1;border-radius:18px;background:var(--panel);border:1px solid var(--panel-b);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .15s var(--ease)}.lvl b{font-size:1.4rem}.lvl small{font-size:.62rem;color:var(--muted)}.lvl .st{font-size:.7rem;color:var(--gold);letter-spacing:1px;min-height:.9em}.lvl:active{transform:scale(.93)}.lvl.current{background:linear-gradient(135deg,#7c4dff,#4f46e5);border:0;box-shadow:0 8px 20px -6px rgba(139,92,246,.8)}.lvl.current small{color:rgba(255,255,255,.85)}.lvl.locked{opacity:.5;cursor:default}.lvl.locked:active{transform:none}.opt{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--radius);background:var(--panel);border:1px solid var(--panel-b)}.opt .e{font-size:1.5rem}.opt .t{flex:1}.opt .t b{display:block;font-size:1rem}.opt .t small{color:var(--muted);font-size:.8rem}.switch{width:60px;height:34px;border-radius:99px;background:rgba(255,255,255,.15);position:relative;transition:background .25s;flex:none}.switch::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.4);transition:transform .25s var(--ease)}.switch[aria-checked="true"]{background:linear-gradient(135deg,var(--a1),var(--a2))}.switch[aria-checked="true"]::after{transform:translateX(26px)}#game .inner{max-width:720px}.side{display:contents}.topbar{display:flex;align-items:center;gap:10px;width:100%;margin-bottom:10px}.topbar .mode{flex:1;text-align:center;font-weight:800;letter-spacing:.14em;font-size:.85rem;color:var(--muted);margin-right:48px}.hud{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;margin-bottom:12px}.stat{background:var(--panel);border:1px solid var(--panel-b);border-radius:16px;padding:8px 4px;text-align:center}.stat small{display:block;font-size:.58rem;letter-spacing:.06em;color:var(--muted);white-space:nowrap}.stat b{display:block;font-size:1.15rem;margin-top:2px;font-variant-numeric:tabular-nums}.stat.hot b{color:var(--gold)}.board-wrap{flex:1;min-height:0;width:100%;display:grid;place-items:center;transition:opacity .2s}.board-wrap.hidden{opacity:0}.board{display:grid;justify-content:center;align-content:center}.card{width:var(--cw);height:var(--ch);perspective:700px;border-radius:calc(var(--cw)*.16)}.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .42s var(--ease)}.card.flipped .card-inner{transform:rotateY(180deg)}.face{position:absolute;inset:0;border-radius:calc(var(--cw)*.16);display:grid;place-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;}.back{background:linear-gradient(145deg,#9d7bff,#5b4be6 60%,#3b2fb8);box-shadow:0 6px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 2px rgba(255,255,255,.12);color:#fff;font-weight:900;font-size:calc(var(--cw)*.42);}.back::before{content:"";position:absolute;width:62%;aspect-ratio:1;border-radius:18%;border:2px solid rgba(255,255,255,.28);transform:rotate(45deg);}.back::after{content:"?";position:relative;text-shadow:0 2px 6px rgba(0,0,0,.3)}.front{background:linear-gradient(160deg,#ffffff,#ece9ff);transform:rotateY(180deg);font-size:calc(var(--cw)*.56);line-height:1;box-shadow:0 6px 14px rgba(0,0,0,.35);}.card:active:not(.flipped) .card-inner{transform:scale(.94)}.card.matched .front{box-shadow:0 0 0 3px var(--ok),0 0 22px rgba(52,227,160,.65);background:linear-gradient(160deg,#fff,#d8fff0)}.card.matched{animation:pop .5s var(--ease);cursor:default}.card.wrong{animation:shake .4s}@keyframes pop{40%{transform:scale(1.14)}100%{transform:scale(1)}}@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}.float{position:fixed;z-index:30;pointer-events:none;font-weight:900;font-size:1.4rem;color:var(--gold);text-shadow:0 2px 8px rgba(0,0,0,.6);transform:translate(-50%,-50%);animation:floatUp .9s ease-out forwards;}@keyframes floatUp{0%{opacity:0;margin-top:10px}20%{opacity:1}100%{opacity:0;margin-top:-60px}}#combo{position:fixed;left:50%;top:50%;z-index:31;pointer-events:none;white-space:nowrap;font-weight:900;font-size:clamp(2rem,10vw,3.2rem);color:#fff;opacity:0;transform:translate(-50%,-50%);text-shadow:0 0 24px rgba(255,140,60,.9),0 4px 12px rgba(0,0,0,.5);}#combo.show{animation:comboIn 1s var(--ease) forwards}@keyframes comboIn{0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(-6deg)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-70%) scale(1)}}.confetti{position:fixed;top:-20px;z-index:45;width:10px;height:14px;pointer-events:none;border-radius:2px;animation:fall linear forwards}@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--rot));opacity:.9}}.overlay{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:20px;background:rgba(8,6,28,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s;}.overlay.active{opacity:1;visibility:visible;transition:opacity .3s}.modal{width:100%;max-width:400px;max-height:100%;overflow-y:auto;padding:26px 20px;border-radius:28px;text-align:center;background:linear-gradient(170deg,#2c2168,#171042);border:1px solid var(--panel-b);box-shadow:0 30px 60px rgba(0,0,0,.55);transform:scale(.85) translateY(20px);transition:transform .4s var(--ease);}.overlay.active .modal{transform:none}.modal h2{font-size:1.5rem;letter-spacing:.12em;margin-bottom:18px}.modal .big{font-size:3.4rem;line-height:1;margin-bottom:8px}.stars{font-size:2.4rem;letter-spacing:6px;margin:6px 0 4px}.stars span{display:inline-block;color:rgba(255,255,255,.18);transform:scale(.6)}.stars span.on{color:var(--gold);text-shadow:0 0 18px rgba(255,201,77,.8);animation:starIn .5s var(--ease) both}.stars span.on:nth-child(2){animation-delay:.2s}.stars span.on:nth-child(3){animation-delay:.4s}@keyframes starIn{from{transform:scale(0) rotate(-90deg)}to{transform:scale(1)}}.newrec{color:var(--gold);font-weight:800;font-size:.85rem;letter-spacing:.1em;min-height:1.2em;margin-bottom:10px}.results{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}.bonus{color:var(--muted);font-size:.78rem;margin-bottom:16px}.ad-area{display:none;max-width:760px;margin:20px auto 36px;padding:0 16px;text-align:center}#ad-bottom{margin:40px auto}.ad-area.on{display:block}.ad-area small{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}.ad-box{min-height:100px;overflow:hidden}.content{max-width:760px;margin:0 auto;padding:44px 20px 8px;scroll-margin-top:var(--hh);color:var(--body);line-height:1.7;font-size:1rem}.content h2{color:var(--text);font-size:1.6rem;letter-spacing:.02em;margin-bottom:14px}.content h3{color:var(--text);font-size:1.08rem;margin:26px 0 8px}.content p{margin-bottom:12px}.content ul,.content ol{margin:0 0 12px 22px}.content li{margin-bottom:6px}.content table{width:100%;border-collapse:collapse;margin:6px 0 14px;font-size:.94rem}.content th,.content td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--panel-b)}.content th{color:var(--text);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}.content .updated{color:var(--muted);font-size:.9rem;margin-bottom:18px}.content kbd{background:var(--panel);border:1px solid var(--panel-b);border-radius:6px;padding:1px 7px;font:inherit;font-size:.88em}#configuracao{display:none}#configuracao:target{display:block}#configuracao pre{background:rgba(0,0,0,.35);border:1px solid var(--panel-b);border-radius:14px;padding:14px;overflow:auto;max-height:70vh;font-size:.78rem;line-height:1.55;tab-size:2;-webkit-user-select:text;user-select:text;margin:0 0 12px}#configuracao code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}#configuracao p code,#configuracao li code,#configuracao td code{background:var(--panel);border-radius:6px;padding:1px 6px;font-size:.88em;white-space:normal;word-break:break-word}#configuracao .cfg-copy{display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:14px;border:1px solid var(--panel-b);background:var(--panel);color:var(--text);font:inherit;font-weight:800;letter-spacing:.06em;cursor:pointer;margin-bottom:10px}#configuracao .cfg-copy:focus-visible{outline:3px solid var(--a2);outline-offset:2px}#configuracao .cfg-ok{display:block;min-height:1.4em;color:var(--ok);font-weight:700;font-size:.9rem;margin-bottom:8px}#configuracao .cfg-warn{border:1px solid rgba(255,201,77,.45);background:rgba(255,201,77,.1);border-radius:14px;padding:12px 14px;color:var(--gold);font-weight:700}.site-footer{max-width:760px;margin:48px auto 0;padding:24px 20px calc(28px + env(safe-area-inset-bottom));border-top:1px solid var(--panel-b);color:var(--muted);font-size:.86rem;text-align:center;line-height:1.9}.site-footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin:6px 0}.site-footer a,.site-footer button{color:var(--body);text-decoration:underline;font-size:.86rem;padding:4px 0}.consent{position:fixed;z-index:50;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;padding:18px;border-radius:20px;background:#1d1650;border:1px solid var(--panel-b);box-shadow:0 20px 50px rgba(0,0,0,.6);color:var(--body);font-size:.9rem;line-height:1.55}.consent[hidden]{display:none}.consent h2{color:var(--text);font-size:1.05rem;margin-bottom:6px}.consent p{margin-bottom:14px}.consent .btn{min-height:50px;font-size:.78rem;letter-spacing:.05em}@media (min-width:700px){.levels{grid-template-columns:repeat(5,1fr)}.stat small{font-size:.7rem}.stat b{font-size:1.4rem}.hud{gap:12px;margin-bottom:18px}.ad-box{min-height:90px}}@media (max-height:620px){#menu .inner{gap:14px}.mini-cards{display:none}.hud{margin-bottom:8px}.stat{padding:5px 4px}}@media (orientation:landscape) and (max-height:520px){:root{--hh:44px}.screen{padding:10px calc(14px + env(safe-area-inset-right)) 10px calc(14px + env(safe-area-inset-left))}#menu .inner{max-width:680px;display:grid;grid-template-columns:1fr 1fr;align-content:center;align-items:center;gap:10px 24px}#menu .inner>div:first-child{grid-row:1/3}.logo span{font-size:2.4rem}.sub{font-size:.85rem;margin-top:8px}.record{padding:8px}.record b{font-size:1.15rem}.btn{min-height:46px}.btn.primary{min-height:52px;font-size:1.1rem}.head{margin-bottom:8px}#game .inner{flex-direction:row;gap:12px;max-width:none}.side{display:flex;flex-direction:column;width:140px;flex:none}.side .hud{grid-template-columns:1fr 1fr;margin:0}.side .topbar .mode{margin-right:0;font-size:.68rem;letter-spacing:.08em}.board-wrap{width:auto;min-width:0;height:100%}}#jogo input{-webkit-user-select:text;user-select:text}.btn.online{background:linear-gradient(135deg,rgba(34,211,238,.22),rgba(139,92,246,.22));border:1px solid rgba(34,211,238,.55);min-height:62px;font-size:1.1rem}#menu .inner{overflow-y:auto;-webkit-overflow-scrolling:touch;justify-content:flex-start;scrollbar-width:none}#menu .inner::-webkit-scrollbar{display:none}#menu .inner>:first-child{margin-top:auto}#menu .inner>:last-child{margin-bottom:auto}#menu .row .btn{letter-spacing:.03em;padding:0 6px;font-size:.78rem;white-space:nowrap}.mp-field{display:flex;flex-direction:column;gap:8px;text-align:left}.mp-field span{font-size:.75rem;letter-spacing:.14em;color:var(--muted);font-weight:800}.mp-input{width:100%;min-height:58px;border-radius:16px;border:1px solid var(--panel-b);background:rgba(255,255,255,.09);color:var(--text);font:inherit;font-size:1.15rem;font-weight:700;padding:0 16px}.mp-input::placeholder{color:rgba(220,216,247,.45);font-weight:600}.mp-input:focus{outline:3px solid var(--a2);outline-offset:2px}.mp-code-in{text-align:center;letter-spacing:.35em;font-size:2rem;text-transform:uppercase;padding:0 0 0 .35em}.mp-msg{padding:14px 16px;border-radius:16px;background:rgba(255,201,77,.12);border:1px solid rgba(255,201,77,.45);color:var(--gold);font-weight:700;text-align:center;line-height:1.4}.mp-err{min-height:1.4em;color:var(--bad);font-size:.92rem;font-weight:700;text-align:center;line-height:1.4}.mp-hint{min-height:1.4em;color:var(--ok);font-size:.9rem;font-weight:700;text-align:center}.btn:disabled{opacity:.45;cursor:default}.btn:disabled:active{transform:none}.mp-panel{display:flex;flex-direction:column;flex:1;min-height:0;width:100%}.mp-panel[hidden]{display:none!important}.mp-center{text-align:center}.mp-lab{font-size:.8rem;letter-spacing:.2em;color:var(--muted);font-weight:800}.mp-code{font-weight:900;font-size:clamp(2.4rem,15vw,4rem);letter-spacing:.14em;padding:18px 0 18px .14em;border-radius:22px;background:var(--panel);border:2px dashed rgba(255,255,255,.3);text-align:center;color:#fff;-webkit-user-select:all;user-select:all;font-variant-numeric:tabular-nums;text-shadow:0 0 24px rgba(139,92,246,.7)}.mp-wait-t{font-weight:800;letter-spacing:.08em;color:var(--a2);animation:pulse 1.6s ease-in-out infinite;padding:6px 0}@keyframes pulse{50%{opacity:.45}}.mp-lobby{align-items:center;justify-content:center;gap:14px;text-align:center}.mp-lobby h2{font-size:1.1rem;letter-spacing:.14em}.mp-lobby .mp-lcode{font-size:2rem;font-weight:900;letter-spacing:.14em;color:#fff}.mp-pl{width:100%;max-width:320px;padding:16px;border-radius:20px;background:var(--panel);border:1px solid var(--panel-b);animation:fadeUp .5s var(--ease) both}.mp-pl .n{display:block;font-size:1.25rem;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mp-pl .r{display:block;color:var(--ok);font-weight:800;letter-spacing:.1em;font-size:.85rem;margin-top:4px}.mp-lvs{font-weight:900;color:var(--muted);letter-spacing:.2em}.mp-start{font-weight:800;letter-spacing:.1em;color:var(--gold)}.mp-top{display:flex;gap:8px;align-items:center;width:100%;margin-bottom:8px}.mp-top .icon-btn{width:46px;height:46px}.mp-turn{flex:1;min-height:46px;display:flex;align-items:center;justify-content:center;border-radius:15px;font-weight:800;letter-spacing:.05em;font-size:.92rem;background:var(--panel);border:1px solid var(--panel-b);padding:2px 10px;text-align:center;line-height:1.25;overflow:hidden;transition:background .25s,border-color .25s}.mp-turn.me{background:rgba(52,227,160,.16);border-color:rgba(52,227,160,.75);color:#8dffd0;box-shadow:0 0 18px rgba(52,227,160,.25)}.mp-turn.end{background:rgba(255,201,77,.14);border-color:rgba(255,201,77,.6);color:var(--gold)}.mp-score{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch;width:100%;margin-bottom:10px}.mp-p{border-radius:16px;padding:7px 8px;background:var(--panel);border:2px solid transparent;min-width:0;text-align:center;transition:border-color .25s,box-shadow .25s}.mp-p.me{background:linear-gradient(160deg,rgba(139,92,246,.28),rgba(255,255,255,.06))}.mp-p.turn{border-color:var(--ok);box-shadow:0 0 16px rgba(52,227,160,.3)}.mp-n{display:block;font-weight:800;font-size:.88rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mp-st{display:block;color:var(--muted);font-size:.74rem;margin-top:2px;white-space:nowrap}.mp-st b{color:var(--text);font-size:.95rem;font-variant-numeric:tabular-nums}.mp-vs{align-self:center;text-align:center;font-weight:900;color:var(--muted);font-size:.8rem;line-height:1.2}.mp-vs small{display:block;font-size:.6rem;letter-spacing:.08em;font-weight:700}#mp-board.wait .card:not(.flipped){filter:saturate(.65) brightness(.88)}.card.pending:not(.flipped) .card-inner{transform:scale(.94)}.mp-conn{position:absolute;left:12px;right:12px;top:8px;z-index:6;pointer-events:none;text-align:center;padding:10px 14px;border-radius:16px;background:rgba(255,107,139,.96);color:#2a0612;font-weight:800;line-height:1.35;box-shadow:0 10px 30px rgba(0,0,0,.45)}.mp-conn[hidden]{display:none}.mp-conn small{display:block;font-weight:700;font-size:.8rem}.mp-count{font-size:3.6rem;font-weight:900;line-height:1;margin:6px 0 4px;font-variant-numeric:tabular-nums;color:var(--gold)}.modal p{color:var(--body);line-height:1.5;margin-bottom:10px}.spin{width:46px;height:46px;border-radius:50%;margin:0 auto 14px;border:4px solid rgba(255,255,255,.18);border-top-color:var(--a2);animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.modal .record .nm{display:block;font-weight:800;font-size:.95rem;color:var(--text);text-transform:none;letter-spacing:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:4px}.modal .record.mine{background:linear-gradient(160deg,rgba(139,92,246,.3),rgba(255,255,255,.06))}.modal .record b{font-size:1.25rem}.modal .record small.sm{margin-top:2px}.mp-res-note{min-height:1.4em;font-size:.88rem;font-weight:700;color:var(--gold);margin-bottom:12px}.mp-toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:46;max-width:min(92vw,420px);padding:12px 16px;border-radius:14px;background:#1d1650;border:1px solid var(--panel-b);box-shadow:0 12px 30px rgba(0,0,0,.5);font-weight:700;text-align:center}.mp-toast[hidden]{display:none}@media (max-height:700px){#menu .inner{gap:14px}.mini-cards{display:none}}@media (orientation:landscape) and (max-height:520px){.mp-score{margin-bottom:6px}.mp-code{font-size:2.2rem;padding:8px 0 8px .14em}}@media (prefers-reduced-motion:reduce){.mp-wait-t,.spin{animation-duration:3s}}body.no-anim .mp-wait-t,body.no-anim .mp-pl{animation:none!important}@media (orientation:landscape) and (max-height:520px){#menu .inner{justify-content:normal}#menu .inner>:first-child,#menu .inner>:last-child{margin:0}}body.no-anim *{transition-duration:0s!important}body.no-anim .glow,body.no-anim .logo span,body.no-anim .sub,body.no-anim .mini-cards i,body.no-anim .btn.primary::after,body.no-anim .card.matched,body.no-anim .card.wrong,body.no-anim .stars span.on{animation:none!important}body.no-anim .stars span.on{transform:scale(1)}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+
+<!-- ============================== HTML ============================== -->
+<body>
+<a class="skip" href="#jogo">Pular para o jogo</a>
+<div class="glow g1" aria-hidden="true"></div><div class="glow g2" aria-hidden="true"></div>
+
+<header class="site-header" id="site-header">
+  <a class="brand" href="#jogo"><i aria-hidden="true">?</i>Memory Cards</a>
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu de navegação">☰</button>
+  <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+    <a href="#jogo">Jogar</a>
+    <a href="#como-jogar">Como Jogar</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#privacidade">Privacidade</a>
+    <a href="#termos">Termos</a>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+  <!-- ÁREA DE ANÚNCIO 1 (oculta enquanto ADS_ENABLED = false) -->
+  <aside class="ad-area" id="ad-top" aria-label="Publicidade">
+    <small>Publicidade</small>
+    <div class="ad-box"><!-- GOOGLE ADSENSE - o bloco de anúncio é inserido aqui pelo JavaScript --></div>
+  </aside>
+
+  <section id="jogo" aria-label="Jogo da memória">
+    <noscript><p style="padding:40px 20px;text-align:center">O Memory Cards precisa de JavaScript para funcionar. Ative o JavaScript no navegador para jogar.</p></noscript>
+
+    <!-- Tela inicial -->
+    <div class="screen active" id="menu">
+      <div class="inner">
+        <div>
+          <div class="mini-cards" aria-hidden="true"><i>🦊</i><i>?</i><i>🦊</i></div>
+          <h1 class="logo"><span>MEMORY</span><span>CARDS</span></h1>
+          <p class="sub">Encontre os pares. Treine sua memória.</p>
+        </div>
+        <div class="records">
+          <div class="record"><small>🏆 Melhor pontuação</small><b id="rec-score">0</b></div>
+          <div class="record"><small>🔥 Melhor sequência</small><b id="rec-combo">x0</b></div>
+        </div>
+        <div class="stack">
+          <button class="btn primary" data-go="difficulty">🎮 JOGAR SOZINHO</button>
+          <button class="btn online" data-go="online">🌐 JOGAR ONLINE</button>
+          <div class="row">
+            <button class="btn" data-go="levels">🏆 NÍVEIS</button>
+            <button class="btn" data-go="settings">⚙️ CONFIGURAÇÕES</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seleção de dificuldade -->
+    <div class="screen" id="difficulty">
+      <div class="inner">
+        <div class="head"><button class="icon-btn" data-go="menu" aria-label="Voltar ao menu">←</button><h2>ESCOLHA O DESAFIO</h2></div>
+        <div class="scroll"><div class="stack" id="diff-list"></div></div>
+      </div>
+    </div>
+
+    <!-- Níveis -->
+    <div class="screen" id="levels">
+      <div class="inner">
+        <div class="head"><button class="icon-btn" data-go="menu" aria-label="Voltar ao menu">←</button><h2>NÍVEIS</h2></div>
+        <div class="scroll"><div class="levels" id="level-list"></div></div>
+      </div>
+    </div>
+
+    <!-- Configurações -->
+    <div class="screen" id="settings">
+      <div class="inner">
+        <div class="head"><button class="icon-btn" data-go="menu" aria-label="Voltar ao menu">←</button><h2>CONFIGURAÇÕES</h2></div>
+        <div class="scroll"><div class="stack">
+          <div class="opt"><span class="e" aria-hidden="true">🔊</span><div class="t"><b>Sons</b><small>Efeitos sonoros do jogo</small></div><button class="switch" role="switch" data-set="sound" aria-label="Sons"></button></div>
+          <div class="opt"><span class="e" aria-hidden="true">📳</span><div class="t"><b>Vibração</b><small>Em acertos e erros</small></div><button class="switch" role="switch" data-set="vibe" aria-label="Vibração"></button></div>
+          <div class="opt"><span class="e" aria-hidden="true">✨</span><div class="t"><b>Animações</b><small>Efeitos visuais e confetes</small></div><button class="switch" role="switch" data-set="anim" aria-label="Animações"></button></div>
+          <button class="btn danger" id="reset-btn" style="margin-top:14px;font-size:.85rem">APAGAR PROGRESSO</button>
+        </div></div>
+      </div>
+    </div>
+
+
+    <!-- Jogar online -->
+    <div class="screen" id="online">
+      <div class="inner">
+        <div class="head"><button class="icon-btn" data-go="menu" aria-label="Voltar ao menu">←</button><h2>JOGAR ONLINE</h2></div>
+        <div class="scroll"><div class="stack">
+          <div class="mp-msg" id="mp-cfg-msg" role="status" hidden></div>
+          <label class="mp-field"><span>SEU NOME</span>
+            <input class="mp-input" id="mp-name" type="text" maxlength="16" autocomplete="nickname" autocapitalize="words" spellcheck="false" enterkeyhint="done" placeholder="Digite seu nome">
+          </label>
+          <p class="mp-err" id="mp-name-err" role="alert"></p>
+          <button class="btn primary" id="mp-btn-create" data-mp="create">➕ CRIAR SALA</button>
+          <button class="btn" id="mp-btn-join" data-mp="join">🔑 ENTRAR EM SALA</button>
+          <button class="btn" data-go="menu">← VOLTAR</button>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Criar sala: escolher o desafio -->
+    <div class="screen" id="create">
+      <div class="inner">
+        <div class="head"><button class="icon-btn" data-go="online" aria-label="Voltar">←</button><h2>ESCOLHA O DESAFIO</h2></div>
+        <div class="scroll"><div class="stack" id="mp-diff-list"></div><p class="mp-err" id="mp-create-err" role="alert"></p></div>
+      </div>
+    </div>
+
+    <!-- Entrar em sala -->
+    <div class="screen" id="join">
+      <div class="inner">
+        <div class="head"><button class="icon-btn" data-go="online" aria-label="Voltar">←</button><h2>DIGITE O CÓDIGO</h2></div>
+        <div class="scroll"><div class="stack">
+          <label class="mp-field"><span class="sr-only">Código da sala</span>
+            <input class="mp-input mp-code-in" id="mp-code-in" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="······" aria-label="Código da sala com 6 caracteres">
+          </label>
+          <p class="mp-err" id="mp-join-err" role="alert"></p>
+          <button class="btn primary" id="mp-btn-enter" data-mp="enter" disabled>ENTRAR</button>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Sala: espera, lobby e partida -->
+    <div class="screen" id="room">
+      <div class="mp-conn" id="mp-conn" role="alert" hidden>⚠️ CONEXÃO PERDIDA<small>Tentando reconectar...</small></div>
+      <div class="inner">
+        <div class="mp-panel" id="mp-wait" hidden>
+          <div class="head"><button class="icon-btn" data-mp="leave" aria-label="Cancelar e sair da sala">←</button><h2>SALA CRIADA</h2></div>
+          <div class="scroll"><div class="stack mp-center">
+            <span class="mp-lab">CÓDIGO</span>
+            <div class="mp-code" id="mp-code" aria-label="Código da sala"></div>
+            <div class="mp-wait-t" role="status">AGUARDANDO ADVERSÁRIO...</div>
+            <button class="btn primary" data-mp="copy">COPIAR CÓDIGO</button>
+            <button class="btn" data-mp="share" id="mp-share" hidden>COMPARTILHAR CONVITE</button>
+            <p class="mp-hint" id="mp-copied" role="status"></p>
+          </div></div>
+        </div>
+
+        <div class="mp-panel mp-lobby" id="mp-lobby" hidden>
+          <h2 id="mp-lobby-t">ADVERSÁRIO ENTROU</h2>
+          <div class="mp-lcode">SALA <span id="mp-lobby-code"></span></div>
+          <div class="mp-pl"><span class="n" id="mp-lobby-p1"></span><span class="r">👤 PRONTO ✓</span></div>
+          <div class="mp-lvs">VS</div>
+          <div class="mp-pl"><span class="n" id="mp-lobby-p2"></span><span class="r">👤 PRONTO ✓</span></div>
+          <div class="mp-start" role="status">INICIANDO PARTIDA...</div>
+        </div>
+
+        <div class="mp-panel" id="mp-play" hidden>
+          <div class="mp-top">
+            <button class="icon-btn" data-mp="leave" aria-label="Sair da partida">✕</button>
+            <div class="mp-turn" id="mp-turn"></div>
+          </div>
+          <div class="mp-score">
+            <div class="mp-p me turn" id="mp-p-me"><span class="mp-n" id="mp-n-me"></span><span class="mp-st"><b id="mp-pr-me">0</b> pares · <b id="mp-pt-me">0</b> pts</span></div>
+            <div class="mp-vs">VS<small id="mp-room-code"></small></div>
+            <div class="mp-p" id="mp-p-opp"><span class="mp-n" id="mp-n-opp"></span><span class="mp-st"><b id="mp-pr-opp">0</b> pares · <b id="mp-pt-opp">0</b> pts</span></div>
+          </div>
+          <div class="board-wrap" id="mp-wrap"><div class="board" id="mp-board" role="group" aria-label="Tabuleiro da partida online"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partida -->
+    <div class="screen" id="game">
+      <div class="inner">
+        <div class="side">
+          <div class="topbar">
+            <button class="icon-btn" id="pause-btn" aria-label="Pausar">⏸</button>
+            <div class="mode" id="mode-label">FÁCIL</div>
+          </div>
+          <div class="hud">
+            <div class="stat"><small>⏱ TEMPO</small><b id="h-time">00:00</b></div>
+            <div class="stat"><small>🎯 JOGADAS</small><b id="h-moves">0</b></div>
+            <div class="stat"><small>⭐ PONTOS</small><b id="h-score">0</b></div>
+            <div class="stat hot"><small>🔥 COMBO</small><b id="h-combo">x0</b></div>
+          </div>
+        </div>
+        <div class="board-wrap" id="board-wrap"><div class="board" id="board" role="group" aria-label="Tabuleiro de cartas"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÁREA DE ANÚNCIO 2 (oculta enquanto ADS_ENABLED = false) -->
+  <aside class="ad-area" id="ad-bottom" aria-label="Publicidade">
+    <small>Publicidade</small>
+    <div class="ad-box"><!-- GOOGLE ADSENSE - o bloco de anúncio é inserido aqui pelo JavaScript --></div>
+  </aside>
+</main>
+
+<!-- Pausa -->
+<div class="overlay" id="pause" role="dialog" aria-modal="true" aria-labelledby="pause-t">
+  <div class="modal">
+    <div class="big" aria-hidden="true">⏸</div>
+    <h2 id="pause-t">PAUSADO</h2>
+    <div class="stack">
+      <button class="btn primary" id="p-resume">CONTINUAR</button>
+      <button class="btn" id="p-restart">REINICIAR</button>
+      <button class="btn" id="p-menu">MENU PRINCIPAL</button>
+    </div>
+  </div>
+</div>
+
+<!-- Vitória -->
+<div class="overlay" id="win" role="dialog" aria-modal="true" aria-labelledby="win-t">
+  <div class="modal">
+    <div class="big" aria-hidden="true">🎉</div>
+    <h2 id="win-t" style="margin-bottom:4px">VOCÊ CONSEGUIU!</h2>
+    <div class="stars" id="w-stars" role="img" aria-label="Avaliação"><span>★</span><span>★</span><span>★</span></div>
+    <div class="newrec" id="w-rec"></div>
+    <div class="results">
+      <div class="record"><small>⭐ Pontuação</small><b id="w-score">0</b></div>
+      <div class="record"><small>⏱ Tempo</small><b id="w-time">00:00</b></div>
+      <div class="record"><small>🎯 Jogadas</small><b id="w-moves">0</b></div>
+      <div class="record"><small>🔥 Melhor combo</small><b id="w-combo">x0</b></div>
+    </div>
+    <div class="bonus" id="w-bonus"></div>
+    <div class="stack">
+      <button class="btn primary" id="w-next">PRÓXIMO NÍVEL</button>
+      <button class="btn" id="w-again">JOGAR NOVAMENTE</button>
+      <button class="btn" id="w-menu">MENU PRINCIPAL</button>
+    </div>
+  </div>
+</div>
+
+<!-- Consentimento de publicidade (só é exibido com ADS_ENABLED = true) -->
+<div class="consent" id="consent" role="dialog" aria-labelledby="consent-t" hidden>
+  <h2 id="consent-t">Sua privacidade</h2>
+  <p>Este site exibe anúncios do Google AdSense, que usam cookies. Você escolhe se os anúncios podem ser personalizados de acordo com seus interesses. Sem personalização os anúncios continuam aparecendo, e cookies ainda podem ser usados para funções como limite de frequência e prevenção de fraude. Saiba mais na <a href="#privacidade">Política de Privacidade</a>.</p>
+  <div class="row">
+    <button class="btn" id="c-deny">NÃO PERSONALIZAR</button>
+    <button class="btn" id="c-accept">PERMITIR PERSONALIZAÇÃO</button>
+  </div>
+</div>
+
+
+<!-- Multiplayer: carregando -->
+<div class="overlay" id="mp-busy" role="alertdialog" aria-modal="true" aria-labelledby="mp-busy-t">
+  <div class="modal">
+    <div class="spin" aria-hidden="true"></div>
+    <h2 id="mp-busy-t" style="font-size:1.15rem;margin:0">CONECTANDO...</h2>
+  </div>
+</div>
+
+<!-- Multiplayer: confirmar saída -->
+<div class="overlay" id="mp-leave" role="dialog" aria-modal="true" aria-labelledby="mp-leave-t">
+  <div class="modal">
+    <div class="big" aria-hidden="true">🚪</div>
+    <h2 id="mp-leave-t" style="font-size:1.25rem">SAIR DA PARTIDA?</h2>
+    <p>A partida será encerrada para os dois jogadores.</p>
+    <div class="stack">
+      <button class="btn primary" data-mp="stay">CONTINUAR JOGANDO</button>
+      <button class="btn danger" data-mp="leave-now">SAIR</button>
+    </div>
+  </div>
+</div>
+
+<!-- Multiplayer: adversário desconectado -->
+<div class="overlay" id="mp-off" role="alertdialog" aria-modal="true" aria-labelledby="mp-off-t">
+  <div class="modal">
+    <div class="big" aria-hidden="true">📡</div>
+    <h2 id="mp-off-t" style="font-size:1.2rem">ADVERSÁRIO DESCONECTADO</h2>
+    <p id="mp-off-m">Adversário desconectado.</p>
+    <div class="mp-count" id="mp-off-n" aria-hidden="true">30</div>
+    <p id="mp-off-w" style="font-weight:800;letter-spacing:.1em">AGUARDANDO ADVERSÁRIO</p>
+    <div class="stack" id="mp-off-btns" hidden>
+      <button class="btn primary" data-mp="keep-waiting">CONTINUAR ESPERANDO</button>
+      <button class="btn" data-mp="leave-now">ENCERRAR PARTIDA</button>
+    </div>
+  </div>
+</div>
+
+<!-- Multiplayer: aviso (sala encerrada pelo adversário etc.) -->
+<div class="overlay" id="mp-notice" role="alertdialog" aria-modal="true" aria-labelledby="mp-notice-t">
+  <div class="modal">
+    <div class="big" aria-hidden="true">👋</div>
+    <h2 id="mp-notice-t" style="font-size:1.25rem">PARTIDA ENCERRADA</h2>
+    <p id="mp-notice-m">O adversário saiu da sala.</p>
+    <div class="stack"><button class="btn primary" data-mp="home">MENU PRINCIPAL</button></div>
+  </div>
+</div>
+
+<!-- Multiplayer: resultado -->
+<div class="overlay" id="mp-result" role="dialog" aria-modal="true" aria-labelledby="mp-res-t">
+  <div class="modal">
+    <div class="big" id="mp-res-e" aria-hidden="true">🏆</div>
+    <h2 id="mp-res-t" style="margin-bottom:14px">VITÓRIA</h2>
+    <div class="results">
+      <div class="record mine"><span class="nm" id="mp-res-n1"></span><small class="sm" id="mp-res-p1">0 pares</small><b id="mp-res-s1">0 pontos</b></div>
+      <div class="record"><span class="nm" id="mp-res-n2"></span><small class="sm" id="mp-res-p2">0 pares</small><b id="mp-res-s2">0 pontos</b></div>
+    </div>
+    <div class="mp-res-note" id="mp-res-note" role="status"></div>
+    <div class="stack">
+      <button class="btn primary" id="mp-rematch" data-mp="rematch">🔄 REVANCHE</button>
+      <button class="btn" data-mp="leave-now">🏠 MENU</button>
+    </div>
+  </div>
+</div>
+
+<div class="mp-toast" id="mp-toast" role="status" hidden></div>
+
+<div id="combo" aria-hidden="true"></div>
+<div id="live" class="sr-only" aria-live="polite"></div>
+
+<!-- ============================== JAVASCRIPT ============================== -->
+<!-- O arquivo está organizado para o jogo (HTML + CSS + JavaScript) ficar logo no começo; textos longos (Como Jogar, Privacidade, Termos, Configuração) vêm depois. -->
+<!-- Diagnóstico: se algo quebrar, mostra o erro real na tela em vez de deixar o jogo "morto" sem explicação -->
+<script>
+(function(){
+  var shown = false;
+  function show(msg, lineno){
+    if(shown) return; shown = true;
+    function mount(){
+      var d = document.createElement('div');
+      d.setAttribute('role', 'alert');
+      d.style.cssText = 'position:fixed;left:10px;right:10px;top:10px;z-index:99999;padding:12px 14px;border-radius:14px;background:#ff6b8b;color:#2a0612;font:700 14px/1.4 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.5);word-break:break-word';
+      d.textContent = 'Erro no jogo: ' + msg + ' — Atualize a página (limpe o cache). Se continuar, envie esta mensagem ao desenvolvedor.';
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = 'FECHAR';
+      b.style.cssText = 'display:block;margin-top:8px;min-height:40px;padding:0 16px;border:0;border-radius:10px;font:800 13px system-ui,sans-serif;background:#2a0612;color:#fff';
+      b.addEventListener('click', function(){ d.remove(); });
+      d.appendChild(b); document.body.appendChild(d);
+      /* Mostra o texto exato da linha que o navegador apontou (só funciona quando o site está em http/https) */
+      if(lineno && /^https?:$/.test(location.protocol) && window.fetch){
+        fetch(location.href.split('#')[0], {cache:'no-store'}).then(function(r){ return r.text(); }).then(function(t){
+          var l = t.split('\n')[lineno - 1];
+          if(l == null) return;
+          var c = document.createElement('div');
+          c.style.cssText = 'margin-top:8px;padding:8px;border-radius:8px;background:rgba(0,0,0,.18);font:12px/1.4 ui-monospace,monospace;white-space:pre-wrap';
+          c.textContent = 'linha ' + lineno + ': ' + l.trim().slice(0, 200);
+          d.insertBefore(c, b);
+        }).catch(function(){});
+      }
+    }
+    if(document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
+  }
+  window.__mcReport = function(err, where){
+    var m = (err && err.message) ? err.message : String(err);
+    show((where ? where + ': ' : '') + m);
+  };
+  window.addEventListener('error', function(ev){
+    if(!ev || !ev.message || ev.message === 'Script error.') return;
+    var onde = (ev.filename && ev.filename.split('#')[0] !== location.href.split('#')[0]) ? ' [arquivo: ' + ev.filename + ']' : '';
+    show(ev.message + (ev.lineno ? ' (linha ' + ev.lineno + ')' : '') + onde, ev.lineno);
+  });
+})();
+</script>
+<script>
+/* CONFIGURAÇÃO — é aqui que você edita AdSense e Supabase. O resto do jogo está no script seguinte. */
+/* =====================================================================
+   PUBLICIDADE — GOOGLE ADSENSE - INSERIR CÓDIGO OFICIAL AQUI
+   ---------------------------------------------------------------------
+   Enquanto ADS_ENABLED for false, NADA do AdSense é carregado: nenhum
+   script, nenhuma requisição, nenhum espaço vazio na página.
+
+   Depois que o Google aprovar o site:
+     1. Troque ADSENSE_CLIENT pelo seu Publisher ID (ex.: "ca-pub-1234567890123456").
+     2. Crie dois blocos de anúncio "Display" no painel do AdSense e copie
+        o número de data-ad-slot de cada um para os dois slots abaixo.
+     3. Mude ADS_ENABLED para true.
+   Se algum valor continuar com o texto de exemplo, o site simplesmente
+   não carrega anúncios (não envia o placeholder para o Google).
+   ===================================================================== */
+var ADS_ENABLED = false;
+var ADSENSE_CLIENT = 'ca-pub-SEU-ID';
+var ADSENSE_SLOT_TOP = 'SEU-SLOT-1';     // ÁREA DE ANÚNCIO 1 (acima do jogo)
+var ADSENSE_SLOT_BOTTOM = 'SEU-SLOT-2';  // ÁREA DE ANÚNCIO 2 (abaixo do jogo)
+
+/* CONSENTIMENTO
+   true  = usa o banner simples deste site: os anúncios só carregam depois
+           que o visitante escolhe entre anúncios personalizados ou não.
+   false = use se você configurar a mensagem de consentimento oficial do
+           Google (AdSense > Privacidade e mensagens) ou outra plataforma
+           de consentimento; nesse caso ela controla o consentimento.
+   ATENÇÃO: este banner é uma base técnica, não uma garantia de
+   conformidade legal. Para visitantes do Espaço Econômico Europeu, Reino
+   Unido e Suíça o Google exige uma plataforma de consentimento
+   certificada. Confira os requisitos atuais no painel do AdSense e a
+   legislação aplicável ao seu público antes de ativar. */
+var USE_OWN_CONSENT_BANNER = true;
+var CONSENT_KEY = 'memoryCards.consent';
+
+/* =====================================================================
+   MULTIPLAYER ONLINE (SUPABASE) — COLE SEUS DADOS AQUI
+   ---------------------------------------------------------------------
+   1. No painel do Supabase abra Project Settings > API (ou "Connect").
+   2. Copie a "Project URL" para SUPABASE_URL.
+   3. Copie a chave "Publishable key" (começa com sb_publishable_...; em
+      projetos antigos é a "anon public key") para SUPABASE_PUBLISHABLE_KEY.
+
+   Estas duas informações são PÚBLICAS por natureza: a segurança vem do
+   RLS e das funções criadas pelo supabase-setup.sql.
+   NUNCA cole aqui a Secret key (sb_secret_...), a service_role key nem a
+   senha do banco de dados. Se isso acontecer, o jogo recusa a chave.
+
+   Enquanto estiverem como "COLE_AQUI", o modo online fica desativado e
+   mostra "Multiplayer ainda não configurado."; o modo solo não é afetado.
+   ===================================================================== */
+const SUPABASE_URL = "https://inuzgihfbagbwgvswmps.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kGwjim1AXxvD7C0xVsa6cA_f6k0-y7c";
+/* Biblioteca oficial supabase-js v2 (só é baixada quando alguém usa o modo
+   online). A versão está fixada e protegida por SRI: se o arquivo mudar, o
+   navegador o recusa. Para atualizar, troque a versão e o hash juntos. */
+var SUPABASE_JS_SRC = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js';
+var SUPABASE_JS_SRI = 'sha384-Rj26LVGvoeRVR6+mwQmFfcR3QOBEwT+ZmuCWpuiqeTzJpCs0ER4ITAWGb4Hiy3Ok';
+</script>
+<script>
+(function(){"use strict";var e=["🐶","🐱","🦁","🐯","🐼","🐸","🐵","🦊","🐨","🐰","🦄","🐙","🦋","🐢","🦜","🐷","🐮","🐔","🐧","🦉","🐝","🐬","🦀","🦖"];var t=[{key:"facil",name:"FÁCIL",pairs:3,icon:"🌱",color:"#34e3a0"},{key:"medio",name:"MÉDIO",pairs:6,icon:"⚡",color:"#22d3ee"},{key:"dificil",name:"DIFÍCIL",pairs:10,icon:"🔥",color:"#ffb14d"},{key:"mestre",name:"MESTRE",pairs:15,icon:"👑",color:"#ff6b8b"}];var n=20;var r=700;var o="memoryCards.v1";function a(e){return e+2}var i={mode:"free",diff:null,level:1,pairs:0,label:"",cards:[],cols:1,first:null,lock:false,paused:false,over:false,playing:false,moves:0,score:0,combo:0,bestCombo:0,matched:0,elapsed:0,tickFrom:null,timerId:null,gid:0};var s=function(e){return document.getElementById(e)};var l=s("board"),c=s("board-wrap"),u=s("jogo");var f=!!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches);function d(){return{bestScore:0,bestCombo:0,bestTimes:{},currentLevel:1,unlocked:1,levelStars:{},settings:{sound:true,vibe:true,anim:true}}}function m(e){return!!e&&typeof e==="object"&&!Array.isArray(e)}function p(){var e=d();try{var t=JSON.parse(localStorage.getItem(o));if(m(t)){e.bestScore=Math.max(0,Number(t.bestScore)||0);e.bestCombo=Math.max(0,Number(t.bestCombo)||0);if(m(t.bestTimes))e.bestTimes=t.bestTimes;if(m(t.levelStars))e.levelStars=t.levelStars;if(m(t.settings)){for(var r in e.settings){if(typeof t.settings[r]==="boolean")e.settings[r]=t.settings[r]}}e.unlocked=Math.min(n,Math.max(1,t.unlocked|0));e.currentLevel=Math.min(e.unlocked,Math.max(1,t.currentLevel|0))}}catch(e){}return e}function v(){try{localStorage.setItem(o,JSON.stringify(b))}catch(e){}}var b=p();function h(){return b.settings.anim&&!f}var g=null;function y(){if(!b.settings.sound)return null;try{if(!g){var e=window.AudioContext||window.webkitAudioContext;if(!e)return null;g=new e}if(g.state==="suspended")g.resume();return g}catch(e){return null}}function T(e,t,n,r,o){var a=y();if(!a)return;try{var i=a.createOscillator(),s=a.createGain();var l=a.currentTime+(r||0);i.type=n||"sine";i.frequency.setValueAtTime(e,l);s.gain.setValueAtTime(1e-4,l);s.gain.exponentialRampToValueAtTime(o||.12,l+.015);s.gain.exponentialRampToValueAtTime(1e-4,l+t);i.connect(s);s.connect(a.destination);i.start(l);i.stop(l+t+.03)}catch(e){}}var C={flip:function(){T(520,.08,"triangle",0,.08)},match:function(e){var t=600+Math.min(e,6)*40;T(t,.12,"sine");T(t*1.5,.2,"sine",.09)},wrong:function(){T(220,.14,"sawtooth",0,.06);T(170,.2,"sawtooth",.1,.06)},win:function(){[523,659,784,1047].forEach(function(e,t){T(e,.28,"triangle",t*.13,.12)})},tap:function(){T(700,.05,"sine",0,.05)}};function w(e){if(b.settings.vibe&&navigator.vibrate){try{navigator.vibrate(e)}catch(e){}}}function E(e){for(var t=e.length-1;t>0;t--){var n=Math.floor(Math.random()*(t+1));var r=e[t];e[t]=e[n];e[n]=r}return e}function A(t){var n=E(e.slice()).slice(0,t);var r=[];n.forEach(function(e,t){r.push({id:t,emoji:e});r.push({id:t,emoji:e})});return E(r)}function S(e){var t="Carta "+(e.idx+1)+" de "+i.cards.length;e.el.setAttribute("aria-label",e.matched?t+": "+e.emoji+", par encontrado":e.flipped?t+": "+e.emoji:t+", virada para baixo")}function x(){l.innerHTML="";i.cards.forEach(function(e,t){var n=document.createElement("button");n.className="card";n.dataset.i=t;n.innerHTML='<div class="card-inner" aria-hidden="true"><div class="face back"></div><div class="face front">'+e.emoji+"</div></div>";e.el=n;e.idx=t;e.flipped=false;e.matched=false;S(e);l.appendChild(n)});L()}function L(){var e=i.cards.length;if(!e)return;var t=O(l,c,e);if(t)i.cols=t}function O(e,t,n){var r=t.clientWidth,o=t.clientHeight;if(r<10||o<10)return 0;var a=n>30?6:n>16?8:10;var i=1.25,s={s:0,c:2};for(var l=2;l<=n;l++){var c=Math.ceil(n/l);var u=Math.min((r-a*(l-1))/l,(o-a*(c-1))/c/i);if(u>s.s)s={s:u,c:l}}var f=window.innerWidth>=700?132:110;var d=Math.max(20,Math.floor(Math.min(s.s,f)));e.style.gridTemplateColumns="repeat("+s.c+","+d+"px)";e.style.gap=a+"px";e.style.setProperty("--cw",d+"px");e.style.setProperty("--ch",Math.floor(d*i)+"px");return s.c}function k(e,t){i.gid++;D();i.mode=e;if(e==="level"){i.level=t;i.pairs=a(t);i.label="NÍVEL "+t;b.currentLevel=t;v()}else{i.diff=t;i.pairs=t.pairs;i.label=t.name}i.cards=A(i.pairs);i.first=null;i.lock=false;i.paused=false;i.over=false;i.playing=true;i.moves=0;i.score=0;i.combo=0;i.bestCombo=0;i.matched=0;i.elapsed=0;i.tickFrom=null;s("mode-label").textContent=i.label;c.classList.remove("hidden");G("pause");G("win");V("game");try{u.scrollIntoView({block:"start",behavior:"auto"})}catch(e){u.scrollIntoView()}x();Q();I()}function _(){k(i.mode,i.mode==="level"?i.level:i.diff)}function N(e){var t=i.cards[e];if(!t||i.lock||i.paused||i.over||t.flipped||t.matched)return;t.flipped=true;t.el.classList.add("flipped");S(t);C.flip();if(i.first===null){i.first=e;Y(t.emoji);return}var n=i.cards[i.first];i.first=null;i.lock=true;i.moves++;var o=i.gid;if(n.id===t.id){n.matched=t.matched=true;i.matched++;i.combo++;if(i.combo>i.bestCombo)i.bestCombo=i.combo;var a=100+50*(i.combo-1);i.score+=a;var s=i.combo;Q();Y(t.emoji+". Par encontrado, mais "+a+" pontos.");setTimeout(function(){if(o!==i.gid)return;n.el.classList.add("matched");t.el.classList.add("matched");n.el.setAttribute("aria-disabled","true");t.el.setAttribute("aria-disabled","true");S(n);S(t);C.match(s);w(30);Z(t.el,"+"+a);if(s>=2)X(s);i.lock=false;if(i.matched===i.pairs)B()},320)}else{i.combo=0;Q();Y(t.emoji+". Não é par.");setTimeout(function(){if(o!==i.gid)return;n.el.classList.add("wrong");t.el.classList.add("wrong");C.wrong();w([40,50,40])},380);setTimeout(function(){if(o!==i.gid)return;n.flipped=t.flipped=false;n.el.classList.remove("flipped","wrong");t.el.classList.remove("flipped","wrong");S(n);S(t);i.lock=false},380+r)}}function I(){clearInterval(i.timerId);i.tickFrom=performance.now();i.timerId=setInterval($,250)}function D(){if(i.tickFrom!==null){i.elapsed+=performance.now()-i.tickFrom;i.tickFrom=null}clearInterval(i.timerId);i.timerId=null}function R(){var e=i.elapsed+(i.tickFrom!==null?performance.now()-i.tickFrom:0);return Math.floor(e/1e3)}function M(e){var t=Math.floor(e/60),n=e%60;return(t<10?"0":"")+t+":"+(n<10?"0":"")+n}function P(){if(!i.playing||i.over||i.paused)return;i.paused=true;D();$();c.classList.add("hidden");J("pause")}function U(){if(!i.paused)return;i.paused=false;c.classList.remove("hidden");G("pause");I();s("pause-btn").focus({preventScroll:true})}function j(){i.gid++;D();i.playing=false;i.paused=false;G("pause");G("win");V("menu")}function B(){i.over=true;D();$();var e=i.gid;var t=R(),r=i.pairs;var o=Math.max(0,r*3-i.moves)*20;var a=Math.max(0,r*8-t)*5;var l=i.score+o+a;var c=i.moves<=Math.ceil(r*1.5)?3:i.moves<=Math.ceil(r*2.5)?2:1;var u=l>b.bestScore;if(u)b.bestScore=l;if(i.bestCombo>b.bestCombo)b.bestCombo=i.bestCombo;var f=i.mode==="level"?"n"+i.level:i.diff.key;if(typeof b.bestTimes[f]!=="number"||t<b.bestTimes[f])b.bestTimes[f]=t;var d=false;if(i.mode==="level"){var m=i.level;if(!b.levelStars[m]||c>b.levelStars[m])b.levelStars[m]=c;if(m<n){if(m>=b.unlocked)b.unlocked=m+1;b.currentLevel=m+1;d=true}}v();setTimeout(function(){if(e!==i.gid)return;s("w-score").textContent=l;s("w-time").textContent=M(t);s("w-moves").textContent=i.moves;s("w-combo").textContent="x"+i.bestCombo;s("w-rec").textContent=u?"🏆 NOVO RECORDE!":"";s("w-bonus").textContent="Bônus: +"+o+" por jogadas · +"+a+" por tempo";s("w-next").style.display=d?"":"none";var n=s("w-stars"),r=n.children;n.setAttribute("aria-label","Avaliação: "+c+" de 3 estrelas");for(var f=0;f<3;f++){r[f].className=""}void n.offsetWidth;for(var m=0;m<c;m++){r[m].className="on"}J("win");C.win();w([60,60,60,60,140]);ee()},650)}function H(){var e=s("level-list");e.innerHTML="";for(var t=1;t<=n;t++){var r=t>b.unlocked;var o=document.createElement("button");o.className="lvl"+(r?" locked":"")+(!r&&t===b.currentLevel?" current":"");o.dataset.level=t;if(r){o.disabled=true;o.setAttribute("aria-label","Nível "+t+" bloqueado");o.innerHTML='<b aria-hidden="true">🔒</b><small>Nível '+t+"</small>"}else{var i=b.levelStars[t]||0;o.setAttribute("aria-label","Nível "+t+", "+a(t)+" pares"+(i?", "+i+" de 3 estrelas":""));o.innerHTML="<b>"+t+"</b><small>"+a(t)+' pares</small><span class="st">'+(i?"★★★".slice(0,i)+"☆☆☆".slice(0,3-i):"")+"</span>"}e.appendChild(o)}}function V(e){var t=document.querySelectorAll(".screen");for(var n=0;n<t.length;n++){t[n].classList.toggle("active",t[n].id===e)}try{if(e==="menu")W();if(e==="difficulty")K();if(e==="levels")H();if(e==="settings")z();if(e==="online")Me();if(e==="create")je();if(e==="join")Be()}catch(t){console.error("Memory Cards: erro ao montar a tela",e,t);if(window.__mcReport)window.__mcReport(t,"tela "+e)}}var F=["site-header","conteudo","conteudo-extra","site-footer"];function q(e){F.forEach(function(t){var n=s(t);if(!n)return;if(e)n.setAttribute("inert","");else n.removeAttribute("inert")});document.body.classList.toggle("modal-open",e)}function J(e){var t=s(e);t.classList.add("active");q(true);var n=null,r=t.querySelectorAll("button");for(var o=0;o<r.length;o++){if(r[o].offsetParent!==null&&!r[o].disabled){n=r[o];break}}if(n)setTimeout(function(){if(t.classList.contains("active"))n.focus({preventScroll:true})},60)}function G(e){s(e).classList.remove("active");if(!document.querySelector(".overlay.active"))q(false)}function Y(e){s("live").textContent=e}function W(){s("rec-score").textContent=b.bestScore;s("rec-combo").textContent="x"+b.bestCombo}function K(){var e=s("diff-list");e.innerHTML="";t.forEach(function(t){var n=document.createElement("button");n.className="diff";n.style.setProperty("--c",t.color);n.dataset.diff=t.key;var r=b.bestTimes[t.key];n.innerHTML='<span class="ico" aria-hidden="true">'+t.icon+"</span><div><h3>"+t.name+"</h3><p>"+t.pairs*2+" cartas · "+t.pairs+" pares</p></div>"+(typeof r==="number"?'<div class="best">melhor tempo<b>'+M(r)+"</b></div>":"");e.appendChild(n)})}function z(){var e=document.querySelectorAll(".switch");for(var t=0;t<e.length;t++){e[t].setAttribute("aria-checked",String(!!b.settings[e[t].dataset.set]))}document.body.classList.toggle("no-anim",!h());Lt=false;s("reset-btn").textContent="APAGAR PROGRESSO"}function Q(){s("h-moves").textContent=i.moves;s("h-score").textContent=i.score;s("h-combo").textContent="x"+i.combo;$()}function $(){s("h-time").textContent=M(R())}function Z(e,t){var n=e.getBoundingClientRect();var r=document.createElement("div");r.className="float";r.textContent=t;r.setAttribute("aria-hidden","true");r.style.left=n.left+n.width/2+"px";r.style.top=n.top+n.height/2+"px";document.body.appendChild(r);setTimeout(function(){r.remove()},950)}function X(e){var t=s("combo");t.textContent="🔥 COMBO x"+e+"!";t.classList.remove("show");void t.offsetWidth;t.classList.add("show")}function ee(){if(!h())return;var e=["#8b5cf6","#22d3ee","#ffc94d","#34e3a0","#ff6b8b","#ffffff"];for(var t=0;t<70;t++){var n=document.createElement("div");n.className="confetti";n.setAttribute("aria-hidden","true");n.style.left=Math.random()*100+"vw";n.style.background=e[t%e.length];n.style.setProperty("--dx",Math.random()*160-80+"px");n.style.setProperty("--rot",Math.random()*1080-540+"deg");var r=1.8+Math.random()*1.8;n.style.animationDuration=r+"s";n.style.animationDelay=Math.random()*.6+"s";if(t%3===0)n.style.borderRadius="50%";document.body.appendChild(n);(function(e,t){setTimeout(function(){e.remove()},t)})(n,(r+.7)*1e3)}}var te=false;function ne(){return ADS_ENABLED===true&&/^ca-pub-\d{10,}$/.test(ADSENSE_CLIENT)}function re(e){return/^\d+$/.test(e)}function oe(){try{var e=JSON.parse(localStorage.getItem(CONSENT_KEY));return e&&(e.ads==="granted"||e.ads==="denied")?e.ads:null}catch(e){return null}}function ae(e){try{localStorage.setItem(CONSENT_KEY,JSON.stringify({ads:e,date:(new Date).toISOString()}))}catch(e){}}function ie(e,t,n){if(!re(t))return;var r=s(e);var o=document.createElement("ins");o.className="adsbygoogle";o.style.display="block";o.setAttribute("data-ad-client",ADSENSE_CLIENT);o.setAttribute("data-ad-slot",t);o.setAttribute("data-ad-format",n);o.setAttribute("data-full-width-responsive","true");r.querySelector(".ad-box").appendChild(o);r.classList.add("on");try{window.adsbygoogle.push({})}catch(e){}}function se(e){if(te||!ne())return;te=true;window.adsbygoogle=window.adsbygoogle||[];if(e!==null)window.adsbygoogle.requestNonPersonalizedAds=e?0:1;var t=document.createElement("script");t.async=true;t.crossOrigin="anonymous";t.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="+encodeURIComponent(ADSENSE_CLIENT);t.onerror=function(){s("ad-top").classList.remove("on");s("ad-bottom").classList.remove("on")};document.head.appendChild(t);ie("ad-top",ADSENSE_SLOT_TOP,"horizontal");ie("ad-bottom",ADSENSE_SLOT_BOTTOM,"auto")}function le(){if(!ADS_ENABLED)return;if(!ne()){console.warn("Memory Cards: ADS_ENABLED está true, mas ADSENSE_CLIENT ainda é o texto de exemplo. Nenhum anúncio foi carregado.");return}if(!USE_OWN_CONSENT_BANNER){se(null);return}var e=s("consent-open");if(e)e.hidden=false;var t=oe();if(t)se(t==="granted");else s("consent").hidden=false}function ce(e){var t=oe();ae(e);s("consent").hidden=true;if(te&&t!==e){location.reload();return}se(e==="granted")}var ue="memoryCards.playerName";var fe="memoryCards.lastRoom";var de=/^[ABCDEFGHJKMNPQRSTUVWXYZ2-9]{6}$/;var me=/[^ABCDEFGHJKMNPQRSTUVWXYZ2-9]/g;var pe=4e3;var ve=30;var be={sb:null,uid:null,readyP:null,libP:null,room:null,ch:null,fresh:false,leaving:false,connOk:true,oppHere:false,seenOpp:false,busy:false,built:"",cards:[],lobbyOn:false,lobbyT:null,resolveT:null,offDeb:null,offTick:null,offLeft:0,offOpen:false,retryT:null,pollT:null,lastApply:0,lastFetch:0,resultT:null,toastT:null,wrongT:null};function he(e){try{return localStorage.getItem(e)}catch(e){return null}}function ge(e,t){try{localStorage.setItem(e,t)}catch(e){}}function ye(e){try{localStorage.removeItem(e)}catch(e){}}function Te(e){return String(e||"").replace(/[\u0000-\u001f\u007f<>&"'`\\]/g,"").replace(/\s+/g," ").trim().slice(0,16).trim()}function Ce(e){if(/^sb_secret_/i.test(e))return true;try{var t=e.split(".");if(t.length===3){var n=JSON.parse(atob(t[1].replace(/-/g,"+").replace(/_/g,"/")));return n&&n.role==="service_role"}}catch(e){}return false}function we(){var e=String(SUPABASE_URL||"").trim(),t=String(SUPABASE_PUBLISHABLE_KEY||"").trim();if(!e||!t||e.indexOf("COLE_AQUI")>-1||t.indexOf("COLE_AQUI")>-1)return"missing";if(!/^https:\/\/[^\s\/]+\.[^\s\/]+\/?$/.test(e)||t.length<20)return"missing";if(Ce(t)){console.error("Memory Cards: uma chave secreta/service_role foi colocada no código. Use somente a Publishable key.");return"secret"}return"ok"}var Ee={ROOM_NOT_FOUND:"Sala não encontrada.",ROOM_FULL:"Esta sala já está cheia.",ROOM_FINISHED:"Esta partida já terminou.",NOT_AUTHENTICATED:"Sua sessão online expirou. Recarregue a página.",INVALID_PAIRS:"Desafio inválido.",NOT_IN_ROOM:"Você não faz parte desta sala."};var Ae="Não foi possível conectar ao multiplayer.";function Se(e,t){return new Promise(function(n,r){var o=setTimeout(function(){r(new Error("TIMEOUT"))},t);e.then(function(e){clearTimeout(o);n(e)},function(e){clearTimeout(o);r(e)})})}function xe(e){return!e||!e.code&&!e.status}function Le(e){var t=String(e&&e.message||"");for(var n in Ee){if(t.indexOf(n)>-1)return Ee[n]}if(t==="LIB"||t==="TIMEOUT")return Ae;if(/anonymous/i.test(t))return"O login anônimo está desativado no Supabase. Ative em Authentication > Sign In / Providers.";if(xe(e))return Ae;return"Algo deu errado. Tente novamente."}function Oe(){if(window.supabase&&window.supabase.createClient)return Promise.resolve();if(be.libP)return be.libP;be.libP=new Promise(function(e,t){var n=document.createElement("script");n.src=SUPABASE_JS_SRC;n.integrity=SUPABASE_JS_SRI;n.crossOrigin="anonymous";n.async=true;n.onload=function(){if(window.supabase&&window.supabase.createClient)e();else{be.libP=null;t(new Error("LIB"))}};n.onerror=function(){be.libP=null;n.remove();t(new Error("LIB"))};document.head.appendChild(n)});return be.libP}function ke(){if(be.sb&&be.uid)return Promise.resolve();if(be.readyP)return be.readyP;be.readyP=Oe().then(function(){if(!be.sb){be.sb=window.supabase.createClient(String(SUPABASE_URL).trim(),String(SUPABASE_PUBLISHABLE_KEY).trim(),{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false},realtime:{params:{eventsPerSecond:10}}})}return be.sb.auth.getSession()}).then(function(e){var t=e&&e.data&&e.data.session;if(t&&t.user)return t;return be.sb.auth.signInAnonymously().then(function(e){if(e.error)throw e.error;return e.data.session})}).then(function(e){be.uid=e.user.id}).catch(function(e){be.readyP=null;throw e});return be.readyP}function _e(e,t){return be.sb.rpc(e,t).then(function(e){if(e.error)throw e.error;return e.data})}function Ne(e){s("mp-busy-t").textContent=e;J("mp-busy")}function Ie(){G("mp-busy")}function De(e){var t=s("mp-toast");t.textContent=e;t.hidden=false;clearTimeout(be.toastT);be.toastT=setTimeout(function(){t.hidden=true},3200)}function Re(e,t){s("mp-notice-t").textContent=e;s("mp-notice-m").textContent=t;G("mp-leave");G("mp-off");G("mp-result");J("mp-notice")}function Me(){s("mp-cfg-msg").hidden=true;s("mp-btn-create").disabled=false;s("mp-btn-join").disabled=false;s("mp-name-err").textContent="";var e=s("mp-name");if(!e.value)e.value=Te(he(ue))}function Pe(){var e=we();if(e==="ok")return true;var t=s("mp-cfg-msg");t.textContent=e==="secret"?"Chave inválida no código: use somente a Publishable key (nunca a secret key ou service_role).":"Multiplayer ainda não configurado.";t.hidden=false;s("mp-name-err").textContent=Ae;return false}function Ue(){var e=Te(s("mp-name").value);s("mp-name").value=e;if(!e){s("mp-name-err").textContent="Digite seu nome para continuar.";s("mp-name").focus();return null}s("mp-name-err").textContent="";ge(ue,e);return e}function je(){var e=s("mp-diff-list");e.innerHTML="";s("mp-create-err").textContent="";t.forEach(function(t){var n=document.createElement("button");n.className="diff";n.style.setProperty("--c",t.color);n.dataset.mp="pairs";n.dataset.pairs=t.pairs;n.innerHTML='<span class="ico" aria-hidden="true">'+t.icon+"</span><div><h3>"+t.name+"</h3><p>"+t.pairs*2+" cartas · "+t.pairs+" pares</p></div>";e.appendChild(n)})}function Be(){s("mp-join-err").textContent="";s("mp-code-in").value="";s("mp-btn-enter").disabled=true}function He(e){var t=Ue();if(!t){V("online");return}Ne("CONECTANDO...");Se(ke(),15e3).then(function(){s("mp-busy-t").textContent="CRIANDO SALA...";return Se(_e("create_room",{p_name:t,p_pairs:e}),15e3)}).then(function(e){Ie();Fe(e,true)}).catch(function(e){Ie();s("mp-create-err").textContent=Le(e)})}function Ve(){var e=Ue();if(!e){V("online");return}var t=s("mp-code-in").value.replace(me,"");if(!de.test(t)){s("mp-join-err").textContent="O código tem 6 caracteres.";return}s("mp-join-err").textContent="";Ne("CONECTANDO...");Se(ke(),15e3).then(function(){s("mp-busy-t").textContent="ENTRANDO NA SALA...";return Se(_e("join_room",{p_code:t,p_name:e}),15e3)}).then(function(e){Ie();Fe(e,true)}).catch(function(e){Ie();s("mp-join-err").textContent=Le(e)})}function Fe(e,t){Je(false);be.fresh=!!t;be.leaving=false;be.connOk=true;be.oppHere=false;be.seenOpp=false;be.built="";be.lobbyOn=false;be.room=e;qe();We();$e();try{u.scrollIntoView({block:"start",behavior:"auto"})}catch(e){}lt(null,e)}function qe(){if(be.room)ge(fe,JSON.stringify({code:be.room.code,id:be.room.id,at:Date.now()}))}function Je(e){clearTimeout(be.lobbyT);clearTimeout(be.resolveT);clearTimeout(be.resultT);clearTimeout(be.wrongT);clearTimeout(be.offDeb);clearInterval(be.offTick);clearInterval(be.retryT);clearInterval(be.pollT);be.lobbyT=be.resolveT=be.resultT=be.wrongT=be.offDeb=be.offTick=be.retryT=be.pollT=null;be.offOpen=false;be.lobbyOn=false;if(be.ch&&be.sb){try{be.sb.removeChannel(be.ch)}catch(e){}}be.ch=null;be.room=null;be.busy=false;be.built="";be.cards=[];s("mp-conn").hidden=true;G("mp-result");G("mp-off");G("mp-leave");G("mp-notice");if(e)ye(fe)}function Ge(){be.leaving=true;Je(true);V("menu")}function Ye(e){var t=be.room;if(!t){Ge();return}if(!e&&t.status!=="waiting"){J("mp-leave");return}be.leaving=true;var n=t.id;Ne("SAINDO...");var r=function(){Ie();Ge()};if(!be.sb){r();return}_e("close_room",{p_room_id:n}).then(function(){Ke();r()}).catch(r)}function We(){var e=be.room;var t=be.sb.channel("room:"+e.code,{config:{presence:{key:be.uid},broadcast:{self:false}}});be.ch=t;t.on("postgres_changes",{event:"*",schema:"public",table:"rooms",filter:"id=eq."+e.id},function(e){if(be.ch!==t)return;if(e&&e.new&&e.new.id)et(e.new,"rt");else if(e&&e.eventType==="DELETE")Xe()}).on("broadcast",{event:"sync"},function(e){if(be.ch!==t||!be.room)return;var n=e&&e.payload&&Number(e.payload.v);if(!n||n>Number(be.room.game_version))ze()}).on("presence",{event:"sync"},function(){if(be.ch===t)tt()}).subscribe(function(e){if(be.ch!==t||be.leaving)return;if(e==="SUBSCRIBED"){try{t.track({uid:be.uid,at:Date.now()})}catch(e){}Qe()}else if(e==="CHANNEL_ERROR"||e==="TIMED_OUT"||e==="CLOSED"){Ze(false)}})}function Ke(e){var t=e?e.game_version:be.room&&be.room.game_version;try{if(be.ch)be.ch.send({type:"broadcast",event:"sync",payload:{v:t}})}catch(e){}}function ze(){if(Date.now()-be.lastFetch<400)return;Qe()}function Qe(){if(!be.sb||!be.room)return Promise.resolve();var e=be.room.id;be.lastFetch=Date.now();return be.sb.from("rooms").select("*").eq("id",e).maybeSingle().then(function(t){if(t.error)throw t.error;if(!be.room||be.room.id!==e)return;Ze(true);if(!t.data){Xe();return}et(t.data,"fetch")}).catch(function(e){if(xe(e))Ze(false)})}function $e(){clearInterval(be.pollT);be.pollT=setInterval(function(){if(!be.room||document.hidden)return;var e=be.room.status==="waiting"||be.room.status==="playing";if(e&&Date.now()-be.lastApply>4500)Qe()},2e3)}function Ze(e){if(be.connOk===e)return;be.connOk=e;s("mp-conn").hidden=e;if(!e){clearTimeout(be.offDeb);be.offDeb=null;if(be.offOpen)at();clearInterval(be.retryT);be.retryT=setInterval(function(){Qe()},3e3)}else{clearInterval(be.retryT);be.retryT=null;nt()}}function Xe(){if(!be.room||be.leaving)return;Je(true);V("menu")}function et(e,t){if(!be.room||e.id!==be.room.id)return;var n=be.room;var r=Number(e.game_version),o=Number(n.game_version);be.lastApply=Date.now();if(r<o||r===o&&t!=="init")return;be.room=e;qe();lt(n,e)}function tt(){if(!be.ch)return;var e=be.ch.presenceState?be.ch.presenceState():{};be.oppHere=Object.keys(e).some(function(e){return e!==be.uid});if(be.oppHere)be.seenOpp=true;nt()}function nt(){var e=be.room;var t=e&&e.status==="playing"&&!be.lobbyOn&&be.connOk&&!be.leaving;if(!t){clearTimeout(be.offDeb);be.offDeb=null;if(be.offOpen)at();return}if(be.oppHere){clearTimeout(be.offDeb);be.offDeb=null;if(be.offOpen)at()}else if(!be.offDeb&&!be.offOpen){be.offDeb=setTimeout(function(){be.offDeb=null;if(!be.oppHere)rt()},pe)}}function rt(){var e=be.room;if(!e||e.status!=="playing")return;be.offOpen=true;ot();J("mp-off");Y("Adversário desconectado.")}function ot(){be.offLeft=ve;s("mp-off-btns").hidden=true;s("mp-off-m").textContent="Adversário desconectado.";s("mp-off-w").textContent="AGUARDANDO ADVERSÁRIO";s("mp-off-n").hidden=false;s("mp-off-n").textContent=be.offLeft;clearInterval(be.offTick);be.offTick=setInterval(function(){be.offLeft--;if(be.offLeft<=0){clearInterval(be.offTick);be.offTick=null;s("mp-off-n").hidden=true;s("mp-off-m").textContent="O adversário ainda não voltou.";s("mp-off-w").textContent="O que você quer fazer?";s("mp-off-btns").hidden=false;var e=s("mp-off-btns").querySelector("button");if(e)e.focus()}else{s("mp-off-n").textContent=be.offLeft}},1e3)}function at(){clearInterval(be.offTick);be.offTick=null;be.offOpen=false;G("mp-off")}function it(e){return e.host_id===be.uid?"host":"guest"}function st(e){["wait","lobby","play"].forEach(function(t){s("mp-"+t).hidden=t!==e});var t=s("room");if(!t.classList.contains("active"))V("room")}function lt(e,t){var n=it(t);if(t.status==="waiting"){s("mp-code").textContent=t.code;s("mp-share").hidden=!navigator.share;s("mp-copied").textContent="";st("wait");return}if(t.status==="closed"){if(!be.leaving){var r=e&&e.status==="finished";Re(r?"ADVERSÁRIO SAIU":"PARTIDA ENCERRADA","O adversário saiu da sala.")}return}var o=e&&e.status==="waiting"||be.fresh&&t.status==="playing"&&t.round===1&&!t.matched.length&&!t.flipped.length;be.fresh=false;if(o&&!be.lobbyOn)ct(t);if(be.lobbyOn)return;st("play");mt(e,t)}function ct(e){var t=it(e);be.lobbyOn=true;s("mp-lobby-code").textContent=e.code;s("mp-lobby-p1").textContent=e.host_name||"";s("mp-lobby-p2").textContent=e.guest_name||"";s("mp-lobby-t").textContent=t==="host"?"ADVERSÁRIO ENTROU":"VOCÊ ENTROU NA SALA";st("lobby");C.match(1);clearTimeout(be.lobbyT);be.lobbyT=setTimeout(function(){be.lobbyT=null;be.lobbyOn=false;if(!be.room)return;if(be.room.status==="closed"){lt(null,be.room);return}st("play");mt(null,be.room);nt()},2300)}function ut(e){var t=e.id+":"+e.round;if(be.built===t)return;be.built=t;var n=s("mp-board");n.innerHTML="";be.cards=[];var r=e.pairs*2;for(var o=0;o<r;o++){var a=document.createElement("button");a.className="card";a.dataset.i=o;a.innerHTML='<div class="card-inner" aria-hidden="true"><div class="face back"></div><div class="face front"></div></div>';n.appendChild(a);be.cards.push({el:a,front:a.querySelector(".front"),v:null})}ft()}function ft(){var e=be.cards.length;if(!e)return;O(s("mp-board"),s("mp-wrap"),e)}function dt(e,t,n){return e+" "+(e===1?t:n)}function mt(e,t){var n=it(t),r=n==="host"?"guest":"host";var o=!!e&&e.id===t.id&&e.round===t.round;ut(t);pt();if(t.status==="playing"){G("mp-result")}if(o)bt(e,t);vt(t);s("mp-n-me").textContent=t[n+"_name"]||"";s("mp-n-opp").textContent=t[r+"_name"]||"";s("mp-pr-me").textContent=t[n+"_pairs"];s("mp-pt-me").textContent=t[n+"_score"];s("mp-pr-opp").textContent=t[r+"_pairs"];s("mp-pt-opp").textContent=t[r+"_score"];s("mp-room-code").textContent=t.code;var a=t.current_turn===n,i=s("mp-turn"),l,c="mp-turn";var u=String(t[r+"_name"]||"").toUpperCase();if(t.status==="finished"){l="🏁 FIM DE JOGO";c+=" end"}else if(t.flipped.length===2){l=a?"❌ NÃO FORMOU PAR":"❌ "+u+" ERROU";if(a)c+=" me"}else if(a){l="🟢 SUA VEZ";c+=" me"}else{l="⏳ VEZ DE "+u}if(i.textContent!==l){Y(l)}i.className=c;i.textContent=l;s("mp-p-me").classList.toggle("turn",t.status==="playing"&&a);s("mp-p-opp").classList.toggle("turn",t.status==="playing"&&!a);s("mp-board").classList.toggle("wait",t.status!=="playing"||!a);clearTimeout(be.resolveT);be.resolveT=null;if(t.status==="playing"&&t.flipped.length===2){var f=t.game_version,d=t.id;be.resolveT=setTimeout(function(){gt(d,f,0)},a?900:2800)}if(t.status==="finished")yt(t);else{clearTimeout(be.resultT);be.resultT=null}}function pt(){ft();requestAnimationFrame(ft)}function vt(e){var t={},n={},r=be.cards.length;e.matched.forEach(function(e){t[e.i]=e.v;n[e.i]=true});e.flipped.forEach(function(e){t[e.i]=e.v});for(var o=0;o<r;o++){var a=be.cards[o],i=t[o]!==undefined;if(i&&a.v!==t[o]){a.front.textContent=t[o];a.v=t[o]}a.el.classList.toggle("flipped",i);a.el.classList.toggle("matched",!!n[o]);a.el.classList.remove("pending");if(n[o])a.el.setAttribute("aria-disabled","true");else a.el.removeAttribute("aria-disabled");a.el.setAttribute("aria-label","Carta "+(o+1)+" de "+r+(i?": "+t[o]+(n[o]?", par encontrado":""):", virada para baixo"))}}function bt(e,t){var n={},r=[],o={};e.flipped.forEach(function(e){n[e.i]=true});e.matched.forEach(function(e){n[e.i]=true;o[e.i]=true});t.flipped.concat(t.matched).forEach(function(e){if(!n[e.i])r.push(e.i)});if(r.length)C.flip();var a=t.matched.filter(function(e){return!o[e.i]});if(a.length){var i=be.cards[a[a.length-1].i];setTimeout(function(){C.match(1);w(30);if(i&&h())Z(i.el,"+100")},320)}else if(t.flipped.length===2&&e.flipped.length<2){clearTimeout(be.wrongT);var s=be.cards[t.flipped[0].i],l=be.cards[t.flipped[1].i];be.wrongT=setTimeout(function(){if(s)s.el.classList.add("wrong");if(l)l.el.classList.add("wrong");C.wrong();w([40,50,40]);setTimeout(function(){if(s)s.el.classList.remove("wrong");if(l)l.el.classList.remove("wrong")},450)},380)}}function ht(e){var t=be.room;if(!t||t.status!=="playing"||be.busy||be.lobbyOn||!be.connOk)return;var n=it(t);if(t.current_turn!==n||t.flipped.length>=2)return;var r=be.cards[e];if(!r||r.el.classList.contains("flipped"))return;be.busy=true;r.el.classList.add("pending");_e("flip_card",{p_room_id:t.id,p_index:e,p_version:t.game_version}).then(function(e){et(e,"rpc");Ke(e)}).catch(function(e){r.el.classList.remove("pending");var t=String(e&&e.message||"");if(xe(e)){Ze(false)}else if(/STALE_STATE|NOT_YOUR_TURN|WAIT|CARD_UNAVAILABLE|NOT_PLAYING/.test(t)){Qe()}else De(Le(e))}).then(function(){be.busy=false})}function gt(e,t,n){if(!be.room||be.room.id!==e||Number(be.room.game_version)!==Number(t)||!be.sb)return;if(!be.connOk){be.resolveT=setTimeout(function(){gt(e,t,n)},1500);return}_e("resolve_turn",{p_room_id:e}).then(function(r){et(r,"rpc");Ke(r);if(be.room&&be.room.id===e&&Number(be.room.game_version)===Number(t)&&n<8){be.resolveT=setTimeout(function(){gt(e,t,n+1)},500)}}).catch(function(r){if(xe(r))Ze(false);if(n<8)be.resolveT=setTimeout(function(){gt(e,t,n+1)},1500)})}function yt(e){var t=e.id+":"+e.round;if(s("mp-result").classList.contains("active")){Tt(e);return}if(be.resultT)return;be.resultT=setTimeout(function(){be.resultT=null;var e=be.room;if(!e||e.id+":"+e.round!==t||e.status!=="finished")return;Tt(e);var n=it(e),r=n==="host"?"guest":"host";var o=e[n+"_score"],a=e[r+"_score"];J("mp-result");if(o>a){C.win();w([60,60,60,60,140]);ee()}else if(o<a){C.wrong()}else{C.match(1)}},900)}function Tt(e){var t=it(e),n=t==="host"?"guest":"host";var r=e[t+"_score"],o=e[n+"_score"];var a=r>o?["🏆","VITÓRIA"]:r<o?["😔","DERROTA"]:["🤝","EMPATE"];s("mp-res-e").textContent=a[0];s("mp-res-t").textContent=a[1];s("mp-res-n1").textContent=e[t+"_name"]||"";s("mp-res-n2").textContent=e[n+"_name"]||"";s("mp-res-p1").textContent=dt(e[t+"_pairs"],"par","pares");s("mp-res-p2").textContent=dt(e[n+"_pairs"],"par","pares");s("mp-res-s1").textContent=r+" pontos";s("mp-res-s2").textContent=o+" pontos";var i=!!e[t+"_rematch"],l=!!e[n+"_rematch"];var c=s("mp-rematch");c.disabled=i;c.textContent=i?"Aguardando adversário...":"🔄 REVANCHE";s("mp-res-note").textContent=i?"":l?"O adversário quer revanche!":""}function Ct(){var e=be.room;if(!e||e.status!=="finished")return;s("mp-rematch").disabled=true;s("mp-rematch").textContent="Aguardando adversário...";_e("request_rematch",{p_room_id:e.id}).then(function(e){et(e,"rpc");Ke(e)}).catch(function(e){s("mp-rematch").disabled=false;s("mp-rematch").textContent="🔄 REVANCHE";if(xe(e))Ze(false);else De(Le(e))})}function wt(){var e=be.room?be.room.code:"";var t=function(){s("mp-copied").textContent="Código copiado!"};var n=function(){s("mp-copied").textContent="Toque no código e copie manualmente."};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(e).then(t,function(){Et(e)?t():n()})}else{Et(e)?t():n()}}function Et(e){try{var t=document.createElement("textarea");t.value=e;t.setAttribute("readonly","");t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();var n=document.execCommand("copy");t.remove();return n}catch(e){return false}}function At(){if(!navigator.share||!be.room)return;navigator.share({title:"Memory Cards",text:"Venha jogar Memory Cards comigo! Código da sala: "+be.room.code,url:location.href.split("#")[0]}).catch(function(){})}function St(e,t){switch(e){case"create":if(Ue()&&Pe())V("create");break;case"join":if(Ue()&&Pe()){V("join");setTimeout(function(){s("mp-code-in").focus()},380)}break;case"pairs":He(+t.dataset.pairs);break;case"enter":Ve();break;case"copy":wt();break;case"share":At();break;case"leave":Ye(false);break;case"leave-now":G("mp-leave");Ye(true);break;case"stay":G("mp-leave");break;case"rematch":Ct();break;case"home":Ge();break;case"keep-waiting":ot();break}}function xt(){if(we()!=="ok")return;var e=he(fe);if(!e)return;var t=null;try{t=JSON.parse(e)}catch(e){}if(!t||!de.test(t.code)||!t.at||Date.now()-t.at>3*3600*1e3){ye(fe);return}Se(ke().then(function(){return be.sb.from("rooms").select("*").eq("code",t.code).maybeSingle()}),12e3).then(function(e){if(e.error)throw e.error;var t=e.data;if(!t||t.status==="closed"){ye(fe);return}if(document.querySelector(".overlay.active"))return;Fe(t,false)}).catch(function(e){console.warn("Retomada da sala não foi possível:",e&&e.message)})}document.addEventListener("visibilitychange",function(){try{if(!document.hidden&&be.room)Qe()}catch(e){console.error("Erro multiplayer:",e)}});window.addEventListener("online",function(){try{if(be.room)Qe()}catch(e){console.error("Erro multiplayer:",e)}});window.addEventListener("offline",function(){try{if(be.room)Ze(false)}catch(e){console.error("Erro multiplayer:",e)}});try{s("mp-code-in").addEventListener("input",function(){var e=this.value.toUpperCase().replace(me,"").slice(0,6);if(this.value!==e)this.value=e;s("mp-btn-enter").disabled=!de.test(e);s("mp-join-err").textContent=""});s("mp-code-in").addEventListener("keydown",function(e){if(e.key==="Enter"&&de.test(this.value)){e.preventDefault();this.blur();Ve()}});s("mp-name").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();this.blur()}});s("mp-name").addEventListener("input",function(){s("mp-name-err").textContent=""})}catch(e){console.error("Erro multiplayer (campos):",e)}try{s("mp-board").addEventListener("keydown",function(e){var t=e.target.closest?e.target.closest(".card"):null;if(!t)return;var n=+t.dataset.i,r=be.cards.length,o;var a=getComputedStyle(this).gridTemplateColumns.split(" ").length||1;if(e.key==="ArrowRight")o=n+1;else if(e.key==="ArrowLeft")o=n-1;else if(e.key==="ArrowDown")o=n+a;else if(e.key==="ArrowUp")o=n-a;else return;e.preventDefault();if(o>=0&&o<r)be.cards[o].el.focus()})}catch(e){console.error("Erro multiplayer (tabuleiro):",e)}var Lt=false;var Ot=s("site-nav"),kt=s("nav-toggle");function _t(e){Ot.classList.toggle("open",e);kt.setAttribute("aria-expanded",String(e));kt.setAttribute("aria-label",e?"Fechar menu de navegação":"Abrir menu de navegação")}function Nt(e){var r=e.target.closest("button");if(!r||r!==kt){if(Ot.classList.contains("open"))_t(false)}if(!r)return;if(r.classList.contains("card")){if(r.closest("#mp-board"))ht(+r.dataset.i);else N(+r.dataset.i);return}if(r===kt){_t(!Ot.classList.contains("open"));return}try{C.tap()}catch(e){}if(r.dataset.mp){St(r.dataset.mp,r);return}if(r.dataset.go){V(r.dataset.go);return}if(r.dataset.diff){var o=t.filter(function(e){return e.key===r.dataset.diff})[0];if(o)k("free",o);return}if(r.dataset.level){var a=+r.dataset.level;if(a<=b.unlocked)k("level",a);return}if(r.dataset.set){var l=r.dataset.set;b.settings[l]=!b.settings[l];v();z();if(l==="vibe"&&b.settings.vibe)w(30);if(l==="sound"&&b.settings.sound)C.match(1);return}switch(r.id){case"pause-btn":P();break;case"p-resume":U();break;case"p-restart":case"w-again":_();break;case"p-menu":case"w-menu":j();break;case"w-next":if(i.mode==="level"&&i.level<n)k("level",i.level+1);break;case"reset-btn":if(!Lt){Lt=true;r.textContent="TOQUE DE NOVO PARA CONFIRMAR"}else{var c=b.settings;b=d();b.settings=c;v();Lt=false;r.textContent="PROGRESSO APAGADO ✓"}break;case"c-accept":ce("granted");break;case"c-deny":ce("denied");break;case"consent-open":s("consent").hidden=false;s("c-deny").focus();break}}document.addEventListener("click",function(e){try{Nt(e)}catch(n){console.error("Memory Cards: erro no clique",n);if(window.__mcReport)window.__mcReport(n,"clique");try{var t=e.target.closest&&e.target.closest("button[data-go]");if(t)V(t.dataset.go)}catch(e){}}});l.addEventListener("keydown",function(e){var t=e.target.closest(".card");if(!t)return;var n=+t.dataset.i,r=i.cards.length,o=i.cols||1,a;if(e.key==="ArrowRight")a=n+1;else if(e.key==="ArrowLeft")a=n-1;else if(e.key==="ArrowDown")a=n+o;else if(e.key==="ArrowUp")a=n-o;else return;e.preventDefault();if(a>=0&&a<r)i.cards[a].el.focus()});document.addEventListener("visibilitychange",function(){if(document.hidden)P()});document.addEventListener("keydown",function(e){if(e.target&&/^(INPUT|TEXTAREA)$/.test(e.target.tagName))return;if(e.key==="Escape"&&Ot.classList.contains("open")){_t(false);kt.focus();return}if(e.key==="Escape"||e.key==="p"||e.key==="P"){if(i.paused)U();else P()}});u.addEventListener("dblclick",function(e){e.preventDefault()});u.addEventListener("contextmenu",function(e){e.preventDefault()});var It=null;function Dt(){clearTimeout(It);It=setTimeout(function(){L();ft()},80)}window.addEventListener("resize",Dt);window.addEventListener("orientationchange",Dt);document.body.classList.toggle("no-anim",!h());W();function Rt(e){if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",e);else e()}Rt(function(){var e=s("year");if(e)e.textContent=(new Date).getFullYear();try{le()}catch(e){console.error("Erro nos anúncios:",e)}});try{xt()}catch(e){console.error("Erro multiplayer:",e)}})();
+</script>
+<div id="conteudo-extra">
+
+  <!-- Como Jogar -->
+  <section class="content" id="como-jogar">
+    <h2>Como jogar</h2>
+    <p>O objetivo é encontrar todos os pares de cartas iguais usando o menor número de jogadas e o menor tempo que você conseguir.</p>
+
+    <h3>Virando as cartas</h3>
+    <ol>
+      <li>Toque em <strong>Jogar</strong> e escolha um desafio, ou abra <strong>Níveis</strong> para seguir a progressão.</li>
+      <li>Todas as cartas começam viradas para baixo. Toque (ou clique) em uma carta para ver a figura.</li>
+      <li>Vire uma segunda carta. Se as duas figuras forem iguais, o par fica aberto e você pontua.</li>
+      <li>Se forem diferentes, as duas voltam a fechar depois de um instante — guarde na memória onde cada figura estava.</li>
+      <li>A partida termina quando todos os pares forem encontrados.</li>
+    </ol>
+    <p>No computador também dá para jogar pelo teclado: use <kbd>Tab</kbd> ou as setas para andar entre as cartas, <kbd>Enter</kbd> ou <kbd>Espaço</kbd> para virar e <kbd>Esc</kbd> ou <kbd>P</kbd> para pausar.</p>
+
+    <h3>Pontuação e combos</h3>
+    <p>Cada par vale 100 pontos. Acertar pares em sequência, sem errar entre eles, forma um combo, e cada acerto do combo vale 50 pontos a mais que o anterior:</p>
+    <table>
+      <thead><tr><th>Acertos seguidos</th><th>Pontos do par</th></tr></thead>
+      <tbody>
+        <tr><td>1º acerto</td><td>+100</td></tr>
+        <tr><td>Combo x2</td><td>+150</td></tr>
+        <tr><td>Combo x3</td><td>+200</td></tr>
+        <tr><td>Combo x4</td><td>+250</td></tr>
+      </tbody>
+    </table>
+    <p>Um erro zera o combo. No fim da partida entram dois bônus: um por terminar com poucas jogadas e outro por terminar rápido. Partidas maiores dão mais margem para os dois. A avaliação em estrelas depende só das jogadas: três estrelas para quem termina com até uma vez e meia o número de pares, duas para até duas vezes e meia, e uma estrela acima disso.</p>
+
+    <h3>Cronômetro</h3>
+    <p>O tempo começa a contar assim que o tabuleiro aparece e para quando o último par é encontrado. O botão de pausa interrompe o cronômetro e esconde as cartas; o jogo também pausa sozinho se você trocar de aba ou minimizar o navegador.</p>
+
+    <h3>Dificuldades e níveis</h3>
+    <table>
+      <thead><tr><th>Desafio</th><th>Cartas</th><th>Pares</th></tr></thead>
+      <tbody>
+        <tr><td>Fácil</td><td>6</td><td>3</td></tr>
+        <tr><td>Médio</td><td>12</td><td>6</td></tr>
+        <tr><td>Difícil</td><td>20</td><td>10</td></tr>
+        <tr><td>Mestre</td><td>30</td><td>15</td></tr>
+      </tbody>
+    </table>
+    <p>O modo <strong>Níveis</strong> tem 20 fases. A primeira começa com 3 pares e cada fase seguinte acrescenta um par, até 22 pares na última. Completar uma fase desbloqueia a próxima, e seu progresso fica salvo no próprio navegador.</p>
+
+    <h3>Jogando online contra um amigo</h3>
+    <p>No menu, toque em <strong>Jogar online</strong>, digite seu nome e escolha uma das opções:</p>
+    <ol>
+      <li><strong>Criar sala:</strong> escolha o desafio. O jogo mostra um código de 6 caracteres; envie para seu amigo pelo botão de copiar ou de compartilhar.</li>
+      <li><strong>Entrar em sala:</strong> digite o código que recebeu.</li>
+    </ol>
+    <p>As partidas online são por turnos e os dois veem exatamente o mesmo tabuleiro. Quem acerta um par ganha 100 pontos e joga de novo; quem erra mostra as duas cartas para ambos por um instante e passa a vez. Vence quem tiver mais pontos quando todos os pares forem encontrados, e no fim vocês podem pedir uma revanche, em que quem começa se alterna. Se a conexão de alguém cair, a partida espera: ao voltar, o tabuleiro é restaurado do ponto em que estava.</p>
+
+    <h3>Dicas para ir melhor</h3>
+    <ul>
+      <li><strong>Vire em ordem.</strong> Nas primeiras jogadas, abra as cartas seguindo linhas ou colunas em vez de pular pelo tabuleiro. Fica mais fácil lembrar a posição de cada figura.</li>
+      <li><strong>Comece pela carta que você não conhece.</strong> Se a primeira carta revelar uma figura que você já viu, a segunda jogada é um acerto garantido.</li>
+      <li><strong>Diga o nome da figura.</strong> Falar "raposa, canto de cima" ajuda a fixar melhor do que só olhar.</li>
+      <li><strong>Agrupe por região.</strong> Em tabuleiros grandes, divida mentalmente em quadrantes e memorize um de cada vez.</li>
+      <li><strong>Não corra no começo.</strong> O bônus de tempo é menor que o custo de errar jogadas e perder o combo.</li>
+      <li><strong>Faça pausas.</strong> Partidas curtas e frequentes costumam render mais do que uma sessão longa e cansada.</li>
+    </ul>
+  </section>
+
+  <!-- Sobre -->
+  <section class="content" id="sobre">
+    <h2>Sobre</h2>
+    <p>Memory Cards é um jogo da memória online, gratuito, que roda direto no navegador do celular, tablet ou computador, sem instalar nada e sem criar conta.</p>
+    <p>Ele foi feito para entretenimento e para quem gosta de exercitar habilidades como atenção, concentração e memória visual de um jeito leve. É um passatempo: não é um produto de saúde e não substitui orientação ou acompanhamento profissional.</p>
+    <p>Seus recordes, níveis desbloqueados e configurações ficam guardados no seu aparelho. O modo online, opcional, usa o serviço Supabase para ligar dois jogadores na mesma sala. Os detalhes estão na <a href="#privacidade">Política de Privacidade</a> e as regras de uso nos <a href="#termos">Termos de Uso</a>.</p>
+  </section>
+
+  <!-- Política de Privacidade (preencha [SEU NOME OU EMPRESA], [SEU EMAIL DE CONTATO] e [DATA]) -->
+  <section class="content" id="privacidade">
+<h2>Política de Privacidade</h2>
+<p class="updated">Última atualização: [DATA]</p>
+
+<p>Esta política explica quais informações o site Memory Cards utiliza e como. O site é mantido por [SEU NOME OU EMPRESA]. Em resumo: o jogo não pede cadastro nem e-mail. No modo solo, seus dados de jogo ficam apenas no seu aparelho. O modo online, opcional, usa o serviço Supabase e está descrito na seção 5.</p>
+
+<h3>1. Informações armazenadas no seu aparelho</h3>
+<p>Para que seu progresso continue salvo quando você fecha o navegador, o jogo usa o armazenamento local do navegador (<em>localStorage</em>). Ficam guardados ali, somente no seu aparelho:</p>
+<ul>
+  <li>melhor pontuação, maior sequência de acertos e melhores tempos;</li>
+  <li>nível atual, níveis desbloqueados e estrelas obtidas;</li>
+  <li>suas configurações de som, vibração e animações;</li>
+  <li>sua escolha sobre personalização de anúncios, quando a publicidade estiver ativa;</li>
+  <li>se você usar o modo online: o apelido digitado, a última sala acessada (para retomar a partida) e a sessão do serviço online, em chaves com prefixo <code>sb-</code> (veja a seção 5).</li>
+</ul>
+<p>No modo solo, essas informações ficam apenas no seu aparelho. No modo online, parte delas é enviada ao Supabase, como explicado na seção 5. Você pode apagá-las a qualquer momento em <strong>Configurações &gt; Apagar progresso</strong> dentro do jogo, ou limpando os dados do site no navegador.</p>
+
+<h3>2. Dados que não coletamos</h3>
+<p>O site não solicita e-mail, telefone, localização nem qualquer cadastro. A única informação digitada por você é o apelido do modo online, e somente se você usar esse modo. O modo solo não usa banco de dados.</p>
+
+<h3>3. Hospedagem</h3>
+<p>O site é hospedado no GitHub Pages. Como qualquer serviço de hospedagem, o GitHub pode registrar dados técnicos de acesso, como endereço IP, para fins de segurança e funcionamento do serviço. Esse tratamento é feito pelo GitHub, conforme a <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">declaração de privacidade do GitHub</a>.</p>
+
+<h3>4. Cookies e publicidade</h3>
+<p>O jogo em si não usa cookies. Este site pode exibir anúncios fornecidos pelo Google AdSense. Enquanto a publicidade não estiver ativa, nenhum script de publicidade é carregado.</p>
+<p>Quando a publicidade estiver ativa:</p>
+<ul>
+  <li>fornecedores terceiros, incluindo o Google, usam cookies para exibir anúncios com base em visitas anteriores do usuário a este ou a outros sites;</li>
+  <li>o uso de cookies de publicidade permite ao Google e a seus parceiros exibir anúncios com base nas visitas a este e/ou a outros sites na internet;</li>
+  <li>além de cookies, esses fornecedores podem usar tecnologias semelhantes, como identificadores do dispositivo e armazenamento local, e receber dados técnicos como endereço IP e informações do navegador, para exibir anúncios, limitar a frequência com que aparecem, medir resultados e prevenir fraudes.</li>
+</ul>
+<p>Para saber como o Google utiliza informações de sites que usam seus serviços, consulte <a href="https://policies.google.com/technologies/partner-sites?hl=pt-BR" rel="noopener">Como o Google usa informações de sites ou apps que usam nossos serviços</a>.</p>
+
+<h3>5. Modo multiplayer online (Supabase)</h3>
+<p>O modo "Jogar online" é opcional e só funciona se o responsável pelo site o tiver ativado. Ele usa o <strong>Supabase</strong>, serviço de terceiros que fornece banco de dados, login anônimo e comunicação em tempo real. Nada disso é carregado enquanto você não abre o modo online (a exceção é retomar uma partida iniciada há pouco tempo). Quando você usa o modo online:</p>
+<ul>
+  <li><strong>Conexão com o serviço:</strong> seu navegador baixa a biblioteca oficial do Supabase por uma rede de distribuição de conteúdo (jsDelivr) e se conecta aos servidores do Supabase. Esses serviços recebem seu endereço IP e dados técnicos do navegador, como acontece em qualquer conexão.</li>
+  <li><strong>Identificador técnico:</strong> o Supabase cria um login anônimo, sem e-mail nem senha. Isso gera um identificador aleatório e um token de sessão, guardados no armazenamento local do seu navegador para que você consiga voltar à partida. Eles são necessários para o funcionamento do modo online.</li>
+  <li><strong>Apelido:</strong> o nome que você digita (até 16 caracteres) é guardado no seu aparelho, para você não precisar digitá-lo de novo, e é enviado ao serviço, onde fica visível para o outro jogador da sala. Se preferir, use um apelido que não revele seu nome verdadeiro.</li>
+  <li><strong>Estado das partidas:</strong> código da sala, apelidos, cartas encontradas, pontos, de quem é a vez e resultado são gravados no banco de dados para sincronizar os dois jogadores e permitir retomar a partida. Somente os dois jogadores da sala têm acesso a esses dados.</li>
+  <li><strong>Presença:</strong> durante a partida, o serviço informa em tempo real se você e o adversário estão conectados.</li>
+  <li><strong>Armazenamento temporário:</strong> as salas são temporárias e programadas para serem apagadas automaticamente algumas horas depois de ficarem sem uso. Os identificadores anônimos de login podem permanecer no Supabase até serem removidos pelo responsável pelo site.</li>
+  <li><strong>Uso dos dados:</strong> o site não usa os dados do modo online para personalizar anúncios.</li>
+</ul>
+<p>Para saber como o Supabase trata dados, consulte a <a href="https://supabase.com/privacy" rel="noopener">política de privacidade do Supabase</a> e a do <a href="https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net" rel="noopener">jsDelivr</a>.</p>
+
+<h3>6. Suas escolhas</h3>
+<ul>
+  <li><strong>Personalização de anúncios neste site:</strong> quando a publicidade estiver ativa, o site pergunta se você permite anúncios personalizados. Você pode mudar essa escolha quando quiser em "Preferências de anúncios", no rodapé da página do jogo.</li>
+  <li><strong>Personalização de anúncios do Google:</strong> você pode desativá-la nas <a href="https://adssettings.google.com/" rel="noopener">Configurações de anúncios do Google</a>.</li>
+  <li><strong>Outros fornecedores:</strong> é possível desativar o uso de cookies de publicidade personalizada de vários fornecedores em <a href="https://www.aboutads.info/choices/" rel="noopener">aboutads.i
